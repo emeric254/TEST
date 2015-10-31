@@ -1,0 +1,50 @@
+% Inspiré de http://en.wikibooks.org/wiki/LaTeX/Title_Creation
+%
+\begin{titlepage}
+    %
+    \begin{center}
+        %
+        \begin{minipage}[t]{0.48\textwidth}
+            \begin{flushleft}
+                \includegraphics [width=50mm]{images/logo-univ.png}
+                \\[0.7cm]
+                \begin{spacing}{1.3}
+                    \textsc{\LARGE Université Toulouse III Paul Sabatier}
+                \end{spacing}
+            \end{flushleft}
+        \end{minipage}
+        %
+        %
+        \begin{minipage}[t]{0.48\textwidth}
+            \begin{flushright}
+                \includegraphics [width=50mm]{images/logo-stri.png}
+                \\[0.7cm]
+                \textsc{\LARGE Filière STRI}
+            \end{flushright}
+        \end{minipage}
+        %
+        \\[3.7cm]
+        %
+        %
+        \textsc{\Large \reportsubject}\\[0.7cm]
+        \HRule \\[0.7cm]
+        %
+        %
+        {\huge \bfseries \reporttitle}\\[0.7cm]
+        \HRule \\[7.5cm]
+        %
+        %
+        \begin{flushleft} \large
+            \emph{Auteurs :}\\
+            \reportauthor
+        \end{flushleft}
+        %
+        %
+        \vfill
+        %
+        %
+        {\large \reportdate}
+    %
+    \end{center}
+%
+\end{titlepage}

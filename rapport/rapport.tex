@@ -1,0 +1,68 @@
+%
+\documentclass[a4paper,11pt,final]{article}
+%
+% Pour une impression recto verso, utilisez plutôt cela :
+%
+%~ \documentclass[a4paper,11pt,twoside,final]{article}
+%
+%
+% import des differents packages
+\usepackage[english,francais]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[pdftex]{graphicx}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage[french]{varioref}
+%
+% pour régler les marges :
+\usepackage[top=2.5cm,bottom=2.3cm,right=2cm,left=2cm]{geometry}
+%
+%
+%
+\newcommand{\reporttitle}{Extension évolutive d'un réseau hospitalier}     % Titre
+\newcommand{\reportauthor}{\textsc{Massip} Thomas, \textsc{Roques} Nicolas, \textsc{Tosi} Émeric} % Auteur
+\newcommand{\reportsubject}{Architecture de réseaux - B.E. Sujet A} % Sujet
+\newcommand{\reportdate}{04 Novembre 2015} % Date
+%
+%
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\setlength{\parskip}{3ex} % Espace entre les paragraphes
+%
+%
+\hypersetup{
+    pdftitle={\reporttitle},%
+    pdfauthor={\reportauthor},%
+    pdfsubject={\reportsubject},%
+    pdfkeywords={rapport} {vos} {mots} {clés}
+}
+%
+%
+\begin{document}
+    %
+    \include{title}
+    \cleardoublepage % Dans le cas du recto verso, ajoute une page blanche si besoin
+    %
+    \tableofcontents % Table des matières
+    \sloppy          % Justification moins stricte : des mots ne dépasseront pas des paragraphes
+    \cleardoublepage
+    %
+    \include{introduction}
+    \cleardoublepage
+    %
+    \include{partie1}
+    \cleardoublepage
+    %
+    \include{partie2}
+    \cleardoublepage{}
+    %
+    \include{partie3}
+    \cleardoublepage
+    %
+    \include{conclusion}
+    \cleardoublepage
+    %
+    \include{references}
+    %
+\end{document}
+

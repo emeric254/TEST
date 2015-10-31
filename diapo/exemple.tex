@@ -1,0 +1,179 @@
+\documentclass[utf8,compress]{beamer}
+\usepackage[francais]{babel}
+
+% thème et couleur
+\usetheme{Warsaw}
+%~ \usecolortheme{wolverine}
+
+% sommaire qu'avec les noms des parties
+\setcounter{tocdepth}{1}
+
+% sujet du diapo
+\newcommand{\slidesubject}{Extension et révision évolutive d’un réseau}
+\subtitle{\slidesubject}
+\subject{\slidesubject}
+
+% titre du diapo
+\title{BE - Architecture de réseaux}
+
+% auteurs
+\author{Prénom \textsc{Nom}, Prénom \textsc{Nom}}
+
+% formalités
+\institute{
+    Université Toulouse III - Paul Sabatier\\
+    Master STRI\\
+    \vspace{0.8em}
+    \emph{À l'attention de} \\
+    M.~Prénom \textsc{Nom} \\
+    M.~Prénom \textsc{Nom}
+}
+
+% date
+\date{\today}
+
+%% Définition du répertoire contenant les images
+\graphicspath{{images/}}
+
+%% Numérotation des diapos :
+\expandafter\def\expandafter\insertshorttitle\expandafter{%
+    \insertshorttitle\hfill%
+    \insertframenumber{}%
+}
+
+
+%~ ---------------------------------------------------------------------
+% DEBUT DIAPORAMA
+\begin{document}
+
+
+%~ ---------------------------------------------------------------------
+% TITRE
+\begin{frame}
+    \titlepage
+\end{frame}
+
+
+%~ ---------------------------------------------------------------------
+% INTRODUCTION
+\section{Introduction}
+
+\begin{frame}{Introduction}
+    \begin{block}{Mise en contexte}
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat.
+    \end{block}
+    \begin{block}{Quel sont les contraintes ?}
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat.
+    \end{block}
+\end{frame}
+
+
+%~ ---------------------------------------------------------------------
+% PLAN
+\begin{frame}{Plan}
+    \tableofcontents
+\end{frame}
+
+
+%~ ---------------------------------------------------------------------
+%% Un rappel du plan sera affiché à chaque début de section.
+\AtBeginSection[]
+{
+    \begin{frame}<beamer>
+        \frametitle{Plan}
+        \tableofcontents[currentsection]
+    \end{frame}
+}
+
+
+%~ ---------------------------------------------------------------------
+% PARTIE
+\section{Schéma actuel}
+
+%
+\subsection{sous partie 1}
+\begin{frame}[containsverbatim]{Sous Partie 1}
+    \begin{block}{Bloc normal}
+         C'est un joli bloc bleu.
+    \end{block}
+    \begin{exampleblock}{Bloc exemple}
+         Le vert signifie que c'est un exemple.
+    \end{exampleblock}
+    \begin{alertblock}{Bloc alerte}
+         Attention c'est rouge !
+    \end{alertblock}
+\end{frame}
+
+%
+\subsection{sous partie 2}
+\begin{frame}{Sous Partie 2}
+    \begin{figure}[h]
+        \center
+        \includegraphics[width=\textwidth]{image.png}
+    \end{figure}
+\end{frame}
+
+
+
+%~ ---------------------------------------------------------------------
+% PARTIE
+\section{Objectifs d'évolution}
+
+%
+\subsection{sous partie 1}
+\begin{frame}{Sous Partie 1}
+    \begin{itemize}
+        \item Une simple liste,
+        \item avec deux éléments.
+    \end{itemize}
+    \begin{block}{Implication}
+        \begin{itemize}
+        \item cause
+        \item[$\Rightarrow$] conséquence
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+%
+\subsection{sous partie 2}
+\begin{frame}{Sous Partie 2}
+    \begin{columns}
+        \begin{column}{0.7\textwidth}
+            Cette page est constituée de\dots
+            \begin{itemize}
+                \item deux colonnes ;
+                \item un liste dans la première colonne ;
+                \item une image dans la deuxième colonne ;
+                \item un bloc.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \begin{figure}[h]
+                \includegraphics[width=3cm]{image.png}
+            \end{figure}
+        \end{column}
+    \end{columns}
+
+    \vspace{1em}
+
+    \begin{block}{Le bloc}
+        Ut eum praeceptum possemus fuit diligendo aliquando diligentiam ut fuit hoc quam inimicitiarum possemus praeceptum.
+    \end{block}
+\end{frame}
+
+
+
+
+%~ ---------------------------------------------------------------------
+% CONCLUSION
+\section{Conclusion}
+\begin{frame}{Conclusion}
+    Bla bla bla, mr freeman... Bla bla bla...
+\end{frame}
+
+
+%~ ---------------------------------------------------------------------
+% FIN DIAPORAMA
+\end{document}
