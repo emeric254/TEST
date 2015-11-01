@@ -1,0 +1,1176 @@
+﻿BESOIN METIER
+préambule materiel de la solution
+coller téléphone médecin 
+télephone fixes
+tablette pour infirmière
+ordi fixes 
+schema simple deux batiment 
+
+
+architecture logique pour répondre a ca
+intro /  schema logique
+adressage + plan nommage 
+table routage
+“type” protocoles reseau mis hsrp, dhcp, ospf. + perf conso + latence ⇒ routeur, switch,
+QOS  (pannes, continuité de services, répartition de charges, sauvegarde, heartbeat)
+
+
+matos pour implementer cette soluce 
+intro (virtu de serv voip) 
+schema implantation (etage machin = equip machin)
+explication schema : parler de tel equipement dans:
+a) liaison batiment + tab
+b) coeur +tab
+c) etage + tab
+d) equip[ement tsablettes truc scanner telw USER + tab
+pannes + equipement de reserve  pour remplacement rapide
+Evolution
+pabx et routeur et VOIP
+gantt 
+conclusion
+________________
+
+
+préambule matériel de la solution
+
+
+Avant de se pencher sur la partie logique, il est important de savoir quels équipements et périphérique nous auront besoin pour cette solution. Nous partons du principe dans l’hypothèse que le nouveau bâtiment comporte 20 chambres par étages de 12 m² soit (4m*3m). De plus la longueur du bâtiment serait d’environ 35 mètres de long et 11 mètres de large. Ces données seront utiles pour la mise en place de notre réseau.
+
+
+Concernant les étages de ce nouveau bâtiment, nous disposeront pour les étages : 
+N-2 : Parking et vestiaires, nous proposons d’installer l’arrivée mais aussi le départ de la connexion en Fibre Optique entre les deux bâtiments.
+
+
+Équipements proposés : 
+* Une Fibre reliant les deux bâtiments. Cette fibre est redondée et sera connectées à la salle serveur (cœur du réseau) à l’étage du dessus.
+
+
+N-1 : Il s’agit du premier sous-sol. Ce niveau est critique du fait par sa composition de deux blocs opératoires et des salles d’imageries (scanners, radio etc…) Nous ne mettrons pas de wifi à ce niveau pour la simple raison que les équipements médicaux pourraient interférer au réseau sans fil. Cependant, un réseau médical filaire est conseillé ainsi que la TOIP.
+Equipements proposés : 
+* Un téléphone IP à chaque bloc opératoire au nombre de 2 avec leur poste respectif
+* Chaque bloc opératoires devrait avoir au moins 3 prises Ethernet de type Rj45
+* Dans l’hypothèse qu’il y a 4 salles d’imageries. 3 prises Ethernet de type Rj45 par salle est nécessaire. Avec au total 1 poste par salle et 1 téléphone IP. Les autres prises sont nécessaires pour les machines d’imagerie 
+* 2 commutateurs.
+
+
+N0 : Accueil et bureaux administratifs. Ici la TOIP est nécessaire pour pouvoir communiquer en interne ou depuis l’extérieur. Un wifi sera mis en place et sera divisé en deux. Une partie dédiée aux salariés et une partie pour les patients. Une salle est prévue à cet étage pour la salle serveur qui permettra d’avoir un cœur de réseau à ce niveau.
+
+
+Equipements proposés : 
+* 2 téléphones IP PoE à l’accueil et accès Internet 
+* 2 ordinateurs fixes pour l’accueil
+* Prenons le principe qu’il y 5 bureaux administratifs dont 3 personnels dans chacun d’eux. Il faudra 15 téléphones IP PoE leur donnant accès à internet avec leur poste respectif. 
+* Au niveau du cœur de réseau. 2 serveurs redondés en répartition de charges, prendront en charge les services de sauvegarde, de Base de données et prendront le rôle de routeur pour donner l’accès à internet par le bié de l’ancien bâtiment suivant plusieurs Vlan. 
+* Un onduleur
+* SAN
+* Commutateur
+
+
+Chaque étage dispose d'un local technique dédié. 
+
+
+N1 : Ce niveau est dédié aux bureaux des médecins, aux laboratoires de recherches et aux réunions. Ici un réseau médical sécurisé est important de le souligner. De la Visio-conférence serait un plus pour bien travailler. A ce niveau également, la TOIP sera présente. L’hypothèse est de 10 bureaux médecins, 2 laboratoires de recherches et 2 salles de réunion.
+
+
+Equipements proposés : 
+* 2 équipements visio-conférence aux deux salles de réunion
+* 1 téléphone VOIP par salle de réunion
+* 1 ordinateur fixe par salle de réunion
+* Dans chaque laboratoire nous proposeront 4 ordinateurs fixes  Ethernet avec la TOIP
+* Ainsi dans chaque bureau un seul poste est disponible donc 10 prises Ethernet de type Rj45 avec la TOIP.
+* 2 commutateurs dans le local prévu à cet effet
+
+
+
+
+N2-N4 : chambres des patients au nombre de 20 par étage.  Chaque chambre disposera d’une connexion de type RJ45 dédié à la téléphonie permettant l’accès TOIP. Nous ne prenons pas en compte les prises électriques ainsi que la télévision. [a]
+Le personnel présent dans l’ensemble de ces étages (N2 à N4), bénéficiera de deux postes connectés à Internet. 
+Un accès Wifi sera aussi disponible et bien séparé pour les visiteurs (patients) et le personnel. Pour la longueur du bâtiment, sur ces 35 mètres, 4 bornes wifi suffiront pour couvrir chaque étages. La technologie PoE (Power Over Ethernet) sera privilégiée, permettant d’être alimenté par le câble Ethernet.
+
+
+Equipements proposés : 
+* Il faudra donc 20 prises Rj45 offrant la téléphonie par IP
+* 2 prises RJ45 dédiées à l’accès à Internet pour deux postes. Donc 6 prises à chaque étage
+* 2 bornes Wifi pour chaque étage dédié au personnel soit 6 bornes
+* 2 bornes Wifi par étage dédiées pour les patients soit 6 bornes 
+* 2 commutateurs à chaque étage soit 6 au total
+
+
+L’ensemble de ces éléments sera dirigé au local de chaque étage créé à cet effet relié à des commutateurs. 
+
+
+Besoin Métier 
+
+
+
+
+Les besoins métier touchent l’ensemble du personnel présent dans l’établissement hospitalier. Chaque personnel a sa fonction métier où il est nécessaire d’utiliser des outils informatisés.
+
+
+
+
+Téléphones VOIP fixe
+
+
+Tout d’abord les médecins et autre personnels de l'hôpital doit être en mesure de communiquer avec ses partenaires de travail. Pour cela le premier outil mis en place sera le telephone fixe que l’on trouvera à plusieurs endroit. Toute la telephonie utilisera la technoligie VOIP (voix sur IP ), ainsi que la technologie Power over Ethernet (PoE) c’est a dire qu’il n’y a pas besoin de Prise d’alimentation, l’alimention passe par les cables ethernet. Cela va facilité l’installation et va permettre de tout centraliser. Il y aura un annuaire centraliser, un multi appel, transfert et d’autre options optimiser pour le confort de travail des utilisateurs. 
+
+
+Quantité detaillé: 
+
+
+N -1 6 (2 salles d’operations + 4 salles d’imageries)
+N 0 15 (3par bueraus + 2 acceuil)
+N1 4 (1 par salle de réunion et         
+N2/4 8 (2par étages a coté des PC fixes) 
+ 
+Téléphone VOIP Fixe destiné aux personnels
+	Téléphone
+	GXP1450 HD Grandstream
+	Technologie
+	DECT 4 appels simultanés, groupement d’appels, appel entrant, attente, codec vocaux, service sécurisé HTTPS/TFTP/SRTP
+interface RJ45, PoE 
+	Quantité
+	32 
+	Prix
+	54.43 €
+	Image
+	  
+
+	source 
+	Voipango.fr source 
+	
+
+Il y a aussi des téléphones dans chaque chambre pour les patients. Ceux si seront beaucoup moins fonctionnel car il n’y a pas la même utilisation. 
+
+
+Il y aura donc 60 téléphones a raccorder en plus sur le réseau.
+
+
+
+
+Téléphone VOIP Fixe déstiné aux patients
+	Téléphone
+	Alcatel Temporis IP100
+	Technologie
+	PoE,VOIP
+	Quantité
+	60
+	Prix
+	46.90 €
+	Image
+	  
+
+	source 
+	http://www.ldlc.com/fiche/PB00164972.html 
+	
+
+
+
+
+
+
+
+
+
+Téléphones VOIP sans fil
+Ici dans cette nouvelle solution proposée, les médecins sont majoritairement mobiles dans les services et consultent sur plusieurs étages mais aussi à leur bureau. Pour cela, un téléphone IP sans fil répondra à leur besoins. Communiquer avec un autre service, joindre un personnel, demander des renseignements, répondre à des questions sur les pathologies patients etc.... 
+Ce téléphone IP sans fil ne devra pas être trop imposant afin de pouvoir l’insérer dans sa blouse, et devra répondre à une longue portée.
+
+
+La fonctionnalité DECT Digital “Enhanced Cordless Telephone” est un téléphone IP numérique sans fil. Cette norme est destiné pour tout usages ainsi qu’aux entreprises sur une gamme de frequence de 1880 à 1900 Mhz. De nos jour, cette gamme est utilisées pour des communication vocales afin d’assurer l'interfonctionnement des équipements.
+
+
+Pour quantifier ce besoin, à l’étage N1 des bureaux médecins seront créés. 10 bureaux médecin à ce niveau là. Mais aussi des surveillants de service auront besoin d’un téléphone VOIP sans fil. Dans l’hypothèse où il y a un surveillant par étage. Pour finir, quelques téléphones seront disponible à chaque étage pour des cadres de santé par exemple.
+
+
+
+
+Téléphone VOIP sans fil
+	Téléphone
+	DP715 Grandstream
+	Technologie
+	DECT 4 appels simultanés, groupement d’appels, appel entrant, attente, codec vocaux, service sécurisé HTTPS/TFTP/SRTP
+interface RJ45
+	Portée
+	Les stations de base installés prendront le relai donc 50 m en intérieur
+	Quantité
+	1 pack = 3 combinés donc 3 packs pour les médecins + 1 par étage 
+3+ 1*6 = 9 packs 
+	autonomie
+	10 h communication, 80 heures en veille, 16h temps de charge
+	Prix
+	139.95 € prix total 9*139.95 = 1259.55 €
+	Image
+	  
+ avec 2 combinés   
+	source 
+	http://www.onedirect.fr/produits/grandstream/grandstream-dp715#tab3 
+http://www.onedirect.fr/produits/grandstream/grandstream-dp715#tab3 
+	
+
+
+
+Terminaux mobiles 
+
+
+Les terminaux mobiles dit tablettes numériques sont des outils facilitant l’activité professionnelle lorsque qu’un personnel est en déplacement. A l’aide du réseau Wi-Fi dédié pour le personnel, ainsi que des applications santé pourront être disponible en lien avec la base de données pour consulter les fiches patients. 
+Une tablette intuitive de petite taille pour faciliter le transport serait un avantage pour le besoin des infirmières ainsi que des médecins.
+
+
+Pour quantifier ce besoin, on part du principe qu’il y a 1 infirmière pour 15 patients en moyenne soit 3 infirmières par étage pour voir plus large. 1 cadre de santé par étage et 10 médecins pour l’établissement. Nous comptons pas l’étage critique pour la simple raison qu’en sous sol il n’y aura pas de bornes Wi-fi car cela peut provoquer des dysfonctionnements au niveau des machines du bloc opératoire.
+
+
+
+
+
+
+Tablette ipad mini 2 
+	Technologie
+	802.11n wifi et cellulaire
+	autonomie
+	10 heures en fonctionnement
+	portée
+	En fonction des bornes Wi-fi (apple = wlan pourri)
+	polyvalence métier
+	Applications dédiées, facilité de navigation, monopole, swag ...
+	image
+	  
+
+	prix
+	299 € site officiel Apple
+	source
+	http://www.apple.com/fr/shop/buy-ipad/ipad-mini-2/16go-gris-sid%C3%A9ral-wifi 
+	
+
+Postes de travail 
+
+
+Concernant les postes de travail, chacun d’eux ont une utilité précise pour chaque personnel présent. 
+Un ordinateur fixe est l’outil de travail d’un médecin pour prescrire des pathologies, visionner des radios, consulter la fiche patient. Les infirmières aussi ont besoin de ces outils pour consulter les stocks des médicaments, et écrire leur compte rendu d’activité sur tel patient pour avoir un tracé etc…
+Des postes de travail sont aussi indispensables au niveau de l’accueil pour consulter les RDV, les agendas etc...
+Chaque poste médecins disposera d’un périphérique lecteur carte vitale pour faciliter la prise en charge et le remboursement de la sécurité sociale.
+
+
+Dans cette proposition :
+Au niveau N-1 un poste par bloc opératoire au nombre de deux, et avec 4 salles d’imagerie, un poste par salle
+Au niveau N-0 il y a 5 bureaux administratifs dont 3 personnels dans chacun d’eux soit au total 15 postes avec en plus 2 postes pour l’accueil
+Au niveau N1 10 breau médecin avec un ordinateur dans chaque bureau. 2 salles de réunion avec chacune d’elle un poste. Et 2 laboratoires avec dans chacune d’elle 4 postes fixes pour faire des recherches. 
+et aux étages supérieurs 2 postes à chaque étage pour consulter les fiches patients, remplir des comptes rendus d’activité, gérer les plannings etc…
+Soit au total 2+4+15+2+10+2+8+6 = 49 postes fixes 
+Voici un tableau descriptif
+
+
+
+
+Caractéristiques
+	Ordinateur
+médecins
+laboratoire
+bloc
+réunion
+accueil 
+	Ordinateur étage
+administratif
+	ecran
+	Souris et clavier avec fil 
+	Outil carte Vitale (Bureau médecin)
+	Marque
+	DELL OptiPlex 7020 Small Form Factor
+
+
+	DELL Ordinateur de bureau Vostro
+
+
+	Philips 18.5" LED - 193V5LSB2
+
+
+	dell
+	Ingenico Xiring
+	processeur
+	4 Coeurs i5 4590
+	Processor G3260 (3M Cache, up to 3.30 GHz)
+	/
+	/
+	
+
+	Capacité/ caractéristique 
+	500 Go
+	500 Go
+	18.5 pouces
+	usb
+	USB
+	Mémoire
+	4 Go DDR3
+	4 Go DDR3
+	/
+	
+
+	
+
+	OS
+	Windows 7 professionnel
+	Windows 7 professionnel
+	/
+	
+
+	
+
+	image
+	  
+
+	  
+
+	  
+
+	  
+  
+
+	  
+
+	prix
+	547 € Ht
+soit 28* 547 = 15 316 € * TVA = 19 317.9 €
+	15 + 6 =21 ordinateurs 
+349 € *21 +19.6% = 8765,4€
+	85.95 € 
+soit 49 *85.95 = 4211.95 €
+	Clavier 14.79 € 
+souris 18.48 € 
+= 1630.23 €
+	229 € 
+pour 10 medecins + 2 accueil
+229*12 = 2748 €
+	source
+	http://www.dell.com/fr/entreprise/p/optiplex-7020-desktop/pd?oc=sm010d7020sff1h161&model_id=optiplex-7020-desktop
+	http://www.dell.com/fr/entreprise/p/vostro-3900-mini-tower/pd?ref=PD_OC
+	http://www.ldlc.com/fiche/PB00191040.html
+	http://www.microdistri.com/dell-kb213-p-5782663.html?tracking=52f944942ed03&gclid=CNmE6vWW78gCFYoEwwodGEIBwA
+http://www.asdiscount.com/clavier-souris-tablette/1450171-dell-570-11476-souris-sans-fil-noir.html
+	http://www.lecteur-vitale.com/fp_consulteur_proplus_usb.php
+	
+
+
+
+
+
+
+
+architecture logique
+
+
+introduction
+
+
+Décrire l’architecture logique de notre solution permet de savoir réellement de quel type d’équipements réseaux et d’interconnexion nous auront besoin afin de bien répondre au cahier des charges demandé.
+L’architecture logique à pour but d’identifier les différents rôles et services de chaque équipement à installer afin de justifier la qualité de notre proposition et de bien sélectionner les services attendus.
+En fonction du besoin recherché nous adapterons chaque équipement avec sa fonction propre.
+
+
+schema logique
+
+
+
+
+
+
+adressage + plan nommage 
+faire des sous réseau ?
+
+
+
+
+Etages
+	Vlan
+	plage d’adresse
+	
+
+	vlan santé
+	10.2.0.0/17
+	n-1
+	vlan critique
+	10.1.0.0/17
+	tous
+	vlan toip hospital
+	10.0.0.0/17
+	
+
+	
+
+	
+
+	n4-7
+	vlan toip patient
+	10.128.0.0/16
+	n4-7
+	vlan patient
+	10.129.0.0/16
+	
+
+
+
+faire le plan de nommage et table de routage
+
+
+
+
+
+
+
+
+
+
+
+
+services et protocoles à mettre en place
+
+
+En fonction du schéma logique ci-avant, il est nécessaire avant de choisir physiquement des équipements réseaux à mettre en place, de voir quels seraient les services et protocoles utiles au bon fonctionnement de notre architecture proposée.
+En outre des besoins métiers, nous nous focalisons sur le coeur même du réseau. 
+
+
+Avant de pouvoir identifier les éléments protocolaires et services du cœur de réseau, il faut cependant bien comprendre l’architecture proposée. 
+
+
+Le cœur du réseau supporte le gros du trafic, en utilisant des technologies rapides. De ce fait, ici on aura un cœur du réseau sur chaque bâtiment. Bien qu’il soit déjà actuel et présent au bâtiment existant, le nouveau backbone sera lui aussi une entité qui gèrera le nouveau bâtiment.
+Un schéma explicatif permet de mieux comprendre cette architecture .
+
+
+A faire par TOSI
+                    
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+Cette étude est centrée uniquement sur le nouveau bâtiment, et de ce fait il est déjà important d’énoncer les différents besoins attendus pour construire cette nouvelle structure.
+Le nouveau bâtiment à besoin de ressources nécessaires pour assurer la haute disponibilité d’un établissement médical.
+Nous allons donc identifier, caractériser les services à mettre en place.
+
+
+Dans un premier temps, nous savons qu’une salle serveur est prévue à cet effet au niveau N0 (Accueil) Pour ce nouveau bâtiment un routeur redondé, semble opportun. En effet ici des réseaux hétérogènes sont présents car les routeurs devront communiquer avec l’ensemble du réseau de l’ancien bâtiment et ensuite être routés vers l’extérieur.
+
+
+Afin de comprendre au mieux cette architecture, un schéma ci-dessous éclaircira nos propos 
+ C:\Users\Nicolas\AppData\Local\Microsoft\Windows\INetCache\Content.Word\schema.jpg 
+
+
+
+Au niveau du cœur de réseau, deux routeurs prendront en charge toute l’administration de l’architecture présentée. Leurs liens seront reliés Switch de niveau 3 permettant le routage inter VLAN au niveau de l’accès et seront installés à chaque étage. Les VLAN caractérisent la partie distribution.
+
+
+Pour finir avec les périphériques à la partie hôtes. La redondance permettra aux autres étages de fonctionner même si un étage n’est pas opérationnel.
+
+
+Routeurs coeur du réseau
+
+
+Le besoin essentiel de nos routeurs est de pouvoir gérer chaque trames qui circulent dans le réseau. 
+
+
+Tout d’abord nos deux routeurs auront la même fonction, les mêmes services installés.
+Pour cela l’équilibrage de charge de chacun d’eux permettra de limiter les pannes et faciliter la tolérance aux pannes. En effet dès lorsqu’un routeur est amené à être défaillant, l’autre routeur écoute celui-ci et sans retour, il prend l’initiative de prendre le relai.
+
+
+
+
+protocoles couche réseau
+
+
+Chaque protocole cité sont déjà pré installé nativement dans chaque routeur. Nous allons en détailler les plus principaux pour faciliter la compréhension de leur fonction et de leur utilité dans notre solution.
+OSPF :
+ OSPF est un protocole de routage, or RIP a ses limites et OSPF répond à une dynamique de routage plus moderne. OSPF est à mettre en place dans chaque routeur pour faciliter le routage. 
+Les avantages de ce protocoles assurent ces bonnes caractéristiques : 
+
+
+Il n’y a pas de limite du nombre de sauts. Avec OSPF chaque routeur possède déjà une connaissance complète du réseau. Dès lors qu’il y a modification d’un lien ou ajout, une mise a jour des tables de routage se fait automatiquement.
+Bien évidemment le protocole OSPF ne connaît que sa zone.
+L’usage du VLSM améliore l’organisation du plan d’adressage. De même OSPF utilise une IP multicast pour envoyer à chaque routeur ses mises à jour d’état de lien.
+
+
+Nous avons expliqué la fonctionnalité essentielle de la répartition de charges entre routeurs, mais nous pouvons dire également que OSPF assure un rendu efficace pour la répartition de charge. Contrairement à RIP, OSPF dispose d’une meilleure convergence des changements de routages grâce aux relations de voisinage qu’il affectionne.
+
+
+
+
+IP Internet protocol est un protocole de communication utilisé par internet. C’est pas ce bié que les flux de données provenant de la couche transport, sont acheminé et encapsulés dans des paquets IP au niveau de la couche réseau.
+
+
+ARP
+
+
+couche transport
+tcp
+udp
+
+
+couche application
+HTTP
+dns
+imap
+snmp
+
+
+Consommations et performances 
+
+
+Commutateurs
+
+
+Chacun de nos commutateur aura pour rôle de bien diffuser les paquets. Ainsi chaque commutateur aura pour configuration virtuelle SVI ……. trois VLAN configurés pour bien différencier ceux-ci.
+Explication de création de VLAN :
+un commutateur de 24 ports aura 4 port tagged pour chaque VLAN etc … + les TOIP interconnectés 
+
+
+SAN
+
+
+QOS
+
+
+Mettre en place un équilibrage de charges sur chaque routeur. à l’aide du principe du HeartBeat, chaque routeur écoutera son voisin. La répartition appellée en anglais “load Balançing” sert de rendre les services opérationnels en cas de défaillance d’un équipement. C’est pour cela que dans le cas d’un établissement hospitalier si un routeur n’est plus fonctionnel alors le second routeur pourra toujours répondre à la demande et fournira les ressources nécessaire telles que l’accès à la base de données, ou à internet.
+
+
+
+
+
+
+
+
+-- - - - - - - -                  ---------------------                      ----------------- ------------ -------- --------------          -  
+
+
+
+
+
+
+1. Schéma significatif de la solution
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Architecture matérielle du réseau
+1. Schéma du matériel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Rôles des équipements réseau
+1. Liaison des bâtiments 
+
+
+Le nouveau bâtiment est construit à 50 mètres du bâtiment déjà existant. De ce fait 50 mètres de distance est un espacement raisonnable pour y relier ces deux bâtiments à l’aide d’une fibre.
+
+
+L’avantage du choix de la fibre optique se porte plus particulièrement sur une connexion optimale offrant un débit bien plus supérieur que l’ADSL. 
+La fibre optique limite les pertes de signal et accentue son avantage sur le très haut débit. Cependant il faut noter qu’il n’est pas nécessaire de modifier totalement l’infrastructure réseau. Sa vitesse dépend de l’équipement aux extrémités de la fibre. C’est pour cela qu’il est préjudiciable d’opter pour un routeur performant.
+
+
+Pourquoi mettre une fibre monomode plutôt qu’une fibre multimode ?
+La fibre multimode est utilisée pour des distances de courtes distances de quelques mètres. En effet, les rayons lumineux qui se propagent peuvent suivre des angles de réfraction différents et arriver au bout de la ligne comme étant dispersées. On distinguera une dispersion du signal. Ses performances avoisinent 1Gb/s pour une longueur de 100 mètres.
+
+
+Tandis que la fibre monomode dispose d’une dispersion du signal quasi nulle et son cœur est plus fin. C’est grâce à ces caractéristiques que ses performances se font ressentir jusqu’à atteindre environs 100 Gb/s. Ce type de fibre est utilisé pour les sites distants. Grâce à son cœur de petit diamètre, la puissance d’émission est plus conséquente. 
+penser au routeur d’extremité sur l’ancien batiment soit le changer/ajouter un auxiliaire  soit mettre convertisseur 
+Le choix de la fibre optique porte sur les critères suivants
+
+
+tableau ici pour comparer 
+Fibre Optique
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	Longueur
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	Type
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	debit
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	prix
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	Raccordement
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+  
+
+
+
+
+
+
+
+Questions 
+Si on met une fibre optique, son débit dépend de l’equipement qu’il y a en extrémité. Serait il pas préjudiciable de mettre un routeur performant et le remplacer par l’ancien dans l’ancien batiment ? 
+
+
+Question con mais c’est synchrone ? ou faut deux cables ? ou alors y a deux cables dans le tuyau
+Je finirai cette partie quand j’aurai les réponses 
+
+
+Pour moi monomode c’est puissant autant prendre monomode plutôt que multimode ?
+
+
+
+
+1. Cœur du réseau
+
+
+
+
+
+
+TOSI  a faire le shéma 
+En noir GRAS :
+Rond routeur et carrés sont les commutateurs avec routage
+Question : dans un VLAN X si une machine du dernier etage voulant communiquer avec une machine d’un autre étage, elle devra passer automatiquement par le cœur de réseau… ?
+
+
+  
+               
+  
+  
+
+
+
+Question est il nécessaire de mettre deux commutateurs redondés en rouge ? 
+
+
+
+
+Routeurs 
+Commençons par les deux routeurs du cœur de réseau qui devront prendre en charge des services nécessaires au bon fonctionnement hospitalier : 
+La première fonction est de transférer les paquets en direction de l’ancien bâtiment afin que le routeur puisse les router jusqu’à internet si besoin.
+La seconde fonction est d’assurer les services VOIP et Wifi (des routeurs et des Switch proposent nativement ces fonctionnalités) redirigés par l’ancien bâtiment
+La troisième fonction est de gérer les mêmes services que l’ancien bâtiment : Sauvegarde de fiches patientes, base de données.
+
+
+Les deux routeurs seront redondés à l’aide du protocole HSRP que nous expliciteront en partie architecture logique du réseau.
+
+
+Chercher un 2 routeurs identiques qui supportent la fibre optique
+
+
+Routeur
+	
+
+	
+
+	
+
+	
+
+	
+
+	Profondeur (mm)
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	 
+
+
+Une fois les routeurs sélectionnés, le choix des commutateurs avec routage réservés à la distribution, auront pour rôle de répartir chaque trame qui circule dans le réseau. Comme expliqué ci-avant un commutateur avec routage permet d’interconnecter des réseaux homogènes ici dans notre cas : les étages de ce nouveau bâtiment. 
+6 commutateurs avec routage devront être installés au niveau du cœur de réseau et chacun d’eux sera destiné pour un étage (N-2/N-1/N-.0/N-1/N-2N-3/N-4)
+
+
+Chercher  6 commutateurs avec routage identiques qui supportent le giga
+
+
+Serveur SAN/NAS stockage partager
+Un serveur SAN Storage Area Network fournit un stockage dédié pour les serveurs. Les données sont enregistrées sur plusieurs disques. On pourra donc faire des sauvegardes de tout le centre hospitalier (les deux bâtiments confondus) incrémentales chaque semaine sur ce SAN. Ces sauvegardes comprendront les fiches de patients et la base de données. En cas de défaillance d’un disque, grâce au RAID préinstallé, a tolérance aux pannes sera améliorée.
+Nous configurerons les deux routeurs en cluster avec le SAN au niveau du cœur de réseau. Cette configuration réparti bien la charges et permet aussi de limiter les pannes et qu’un routeur puisse prendre la charge complète. Il faut cependant que chaque routeur ait accès aux mêmes données
+Les serveurs en cluster doivent avoir accès aux mêmes données.
+
+
+Le clustering de routeur 
+Shéma à améliorer par tosi
+  
+
+Les avantages d’un SAN sont diverses et offrent la garantie de sécurité. Elle offre également les fonctionnalités de disque SCSI, de gestion RAID, et de la virtualisation multi-OS, si un jour une éventuelle évolution réseau serait amenée à éclore.
+
+
+Nous avons besoin pour un tel établissement un stockage conséquent sans pour autant avoir une rapidité de traitement. 
+
+
+Chercher 1 SAN qui puisse rentrer dans la baie d’une capacité performante
+Faire tableau des caractéristiques et afficher le prix
+
+
+Onduleur
+Un onduleur est un équipement permettant de sécuriser l’ensemble des équipements interconnectés. Il s’agit d’un dispositif électronique de forte puissance qui permet de délivrer des tensions et des courants alternatifs à partir d'une source d'énergie électrique continue. De ce fait il préserve l’extinction des équipements.
+Un onduleur de marque Eaton est selectionné. Il est robuste et fonctionnel
+  
+
+Baie de brassage 
+
+
+La question qui se pose : quel est le type de baie de brassage à prendre et à quel nombre ?
+Ici chaque équipement du cœur de réseau que nous avons sélectionné pour la solution proposée s’adapte aux baies de brassage de taille standard.
+Le choix de sa profondeur est un point essentiel à prendre en compte, il faut cependant savoir aussi que la longueur est importante.
+Chacun de nos matériels ne sont pas spécialement imposants.
+
+
+
+
+http://bugboot.fr/baie-combo-200-600x800-pxl-porte-vitree-42u-p-28664.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+dans la baie principale et a chaque Etages
+switchs  
+Pour continuer, le choix des équipements supplémentaires se portent sur les Switch qui commuteront des trames. Deux Switch seront préconisés. En effet redonder un Switch permet de bien séquencer les trames, éviter les domaines de collisions et assurer la panne matérielle L’optionalité stacking et les différents VLAN à mettre en place seront explicités en partie architecture logique
+
+
+
+
+
+
+
+
+ 
+Le choix des deux Switch se porte principalement sur la capacité à transmettre les trames. Des ports Gigabits permettront d’améliorer le débit de transit reliés au routeur.
+24 ports suffisent, en effet, nous auront besoin de 3 Vlan à proprement dit : 
+* Vlan critique : pour le service de blocs opératoires et d’imagerie.
+Le mettre dans une DMZ ?  
+* Vlan santé : pour l’ensemble du personnel
+* Vlan visiteur : pour les patients
+
+
+  
+
+
+
+
+
+
+
+Pourquoi avoir choisi un Switch Netgear ? 
+Tout d’abord choisir un Switch par le nombre de ports désirés. Nous auront besoin de 3 ports trunk en gigabits : 
+* Un relié du Switch 1 au Switch 2
+* Un relié du Switch 2 au Switch 1
+* Un relié venant de chaque Switch avec routage 
+
+
+Les autres ports serviront pour relier chaque équipement périphérique
+
+
+Un switch supplémentaire assurant la redondance 
+
+
+
+
+
+
+Switch
+	Ethernet Netgear FS728TP
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Logique 
+Routeur
+
+
+HSRP http://idum.fr/spip.php?article226
+Switch
+Nous  nous contenterons de voir dot1q dans le cas présent. Toutefois il est bon de savoir que chacun a son propre fonctionnement. ISL pour sa part encapsule toute les trames, quelque soit le VLAN. dot1Q, lui ne fait qu’insérer un tag (un marqueur) dans l’entête de la trame ethernet … et uniquement sur les VLANs autres que le VLAN natif. (Le VLAN natif est celui utilisé par les protocoles comme CDP par exemple pour s’échanger les informations)
+
+
+https://fr.wikipedia.org/wiki/Commutateur_r%C3%A9seau
+
+
+
+
+
+
+Question supp : 
+Caméra vidéo surveillance ?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Logique
+  
+
+
+
+
+
+
+
+[a]Ici on met du PoE pour la telephonie aussi on ne prend pas en compte que la television
