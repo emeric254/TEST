@@ -75,3 +75,53 @@ La même note\,\footnotemark[\value{footnote}] que précédemment.
     \includegraphics[width=0.5\textwidth]{./images/LaTeX_logo.png}
     \caption{latex | 50\% de la largeur de la page}
 \end{figure}
+
+
+
+
+%~ ---------------------------------------------------------------------
+%~ ---------------------------------------------------------------------
+%~ ---------------------------------------------------------------------
+
+
+%~ Contexte
+
+%~ La question essentielle se pose : Comment structurer la nouvelle architecture réseau du nouveau bâtiment hospitalier ?
+%~ En effet, l’objectif principal d’évolution est de structurer l’architecture comme indiqué ci-dessous :
+
+%~ Cœur
+%~ Distribution
+%~ Accès
+
+%~ Ces trois structures sont indispensables afin de bien consolider l’architecture hospitalier. L’objectif principal est d’assurer un service performant et sécurisé pour le personnel et les patients. Le réseau dans un hôpital ne demande pas spécialement de performances de débit, mais demande plus particulièrement des solutions fonctionnelles,  et sécurisées.
+
+%~ Pour la couche accès, ici l’objectif est de raccorder différents équipements hétérogènes tels que les téléphones le Wifi, les tablettes etc…Dans cette couche nous trouverons différents VLAN pour chaque entités d’utilisateurs (personnels et visiteurs)
+
+%~ Pour la couche distribution, permet l’agrégation de flux homogènes tels que Ethernet et la capacité en commutation de circuits.
+
+%~ Pour la couche cœur de réseau, il sera préférable de bien différentier nos différents réseaux du personnel et des visiteurs (patients)
+%~ Dans cette partie des protocoles seront mis en place pour assurer les structurations architecturales de l’ensemble du réseau.
+
+%~ Ces objectifs permettront d’assurer une fiabilité du réseau du par ses différents échanges
+
+%~ Plusieurs hypothèses peuvent répondre au cahier des charges demandé. Cependant, notre éventuelle solution se porte principalement sur les critères suivants :
+%~ -Budget
+%~ -Topologie réseau
+%~ - Le temps de l’évolution.
+
+%~ Nous avons décidé de se focaliser principalement sur le nouveau bâtiment. En fonction de la description de l’existant.
+%~ La première idée que l’on se pose est de savoir par quel lien nous allons relier les deux bâtiments ? Le choix de la fibre monomode semble le plus opportun. Une redondance de lien est nécessaire pour
+%~ La seconde idée se pose à la redondance du cœur du réseau. Un cœur de réseau déjà existant à l’ancien bâtiment doit être dupliqué au nouveau bâtiment, avec un certain niveau de sécurité offrant la TOIP, l’accès à internet, la sauvegarde et l’accès à la base de données.
+%~ La troisième idée permet d’offrir un accès sans fil Wifi au personnel afin de consulter les ressources en toute mobilité. Les patients également auront accès à un réseau sans fil différent.
+%~ La quatrième idée est d’assurer la qualité de service (QOS), chaque étage dispose d’un local dédié permettant de fournir l’accès aux ressources réseaux. Les étages seront assurés par des protocoles de gestion.
+
+%~ Hypothèse future :
+%~ L’ensemble de l’architecture de l’ancien bâtiment se coordonne aux éventuelles solutions que nous mettrons en place au nouveau bâtiment. Cependant si le projet souhaite évoluer d’ici quelques années et que le budget est conséquent, une remise à niveau de l’architecture de l’ancien bâtiment semblerait importante.
+%~ Un redimensionnement du réseau
+%~ Remise d’actualité des câbles
+%~ Virtualisation du PABX, ou mise en place de la TOIP
+%~ Virtualisation totale des serveurs et cœur de réseau.
+%~ Sauvegarde externalisée.
+%~ Un réseau Wifi séparé pour le personnel et les visiteurs
+%~ Matériels fournit (tablettes, postes, et téléphones IP)
+
