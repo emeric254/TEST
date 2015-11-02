@@ -1,16 +1,43 @@
-\section{Lorem ipsum}
-\label{p3}
+\section{Architecture matérielle du réseau}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat.
-Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiat nullapariatur.
-Excepteur sint occaecat cupidatat non proident, sunt inculpa qui officia deserunt mollit anim id est laborum.
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat.
-Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiat nullapariatur.
-Excepteur sint occaecat cupidatat non proident, sunt inculpa qui officia deserunt mollit anim id est laborum.
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat.
-Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiat nullapariatur.
-Excepteur sint occaecat cupidatat non proident, sunt inculpa qui officia deserunt mollit anim id est laborum.
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.
+%
+%
+\subsection{Architecture physique}
+
+Après avoir vue l'architecture logique de notre réseau, nous pouvons maintenant établir l'architecture physique du réseau.
+
+Tout d’abord, les deux bâtiments sont reliés à l’aide de deux fibres optiques (afin d’effectuer de la redondance en cas de coupure d’une de ces deux fibres) que l’on intègre dans le faux plafond du tunnel reliant les deux bâtiments.
+Les fibres sont relié aux routeurs qui ce situe au N0 dans la salle dédié à cet effet.
+
+Le niveau -1 est le niveau ou les scanners, radio s'effectuent ainsi que les opérations.
+Comme vue précédemment, il n'y a ni WiFi ni accès a internet pour ce niveau.
+Les équipements médicaux étant branchés directement sur les ordinateurs, on relie que les ordinateurs ainsi que les téléphones au commutateur du niveau -1 situé dans un local prévu à cet effet.
+De ce fait, les terminaux du niveau -1 font partie du VLAN Médical.
+
+Au niveau 0, une salle est entièrement dédié aux équipements réseau.
+Cette salle contient une armoire. On y installe deux routeurs, deux lames serveur, un NAS ainsi que 2 commutateurs.
+Un commutateur principal et un concernant le raccordement des terminaux du niveau 0.
+Tous les équipements réseau sont réliés au commutateurs principal.
+Les différents terminaux du niveau 0 tels que les bornes WiFi ou ordinateurs sont reliés au commutateur du niveau 0.
+Il y a 3 bornes WiFi, une fournissant internet pour les visiteurs et deux autres pour le personnel.
+La borne WiFi fournissant internet pour les visiteurs fait partit du VLAN DonnéesVisiteur.
+Les téléphones pour l’accueil et les bureaux administratif font partie du VLAN VoIPInterne.
+Les ordinateurs et les bornes WiFi eux font partie du VLAN DonnéesInterne.
+
+Le niveau 1 contient  uniquement des terminaux faisant partit du VLAN Interne.
+Les terminaux téléphoniques font partie du VLAN VoIP-Interne, les ordinateurs et les bornes WiFi du VLAN Données-Interne.
+Tous les terminaux seront reliés sur deux commutateurs 24ports se situant dans le local de l'étage prévue à cet effet.
+
+Pour les niveaux de 2 à 4, on place une borne WiFi afin de fournir Internet aux patients.
+Cette borne fait partit du VLAN Données-Visiteur. Les téléphones pour les patients ce situant dans chaque chambres font partie du VLAN VoIP-Visiteur.
+La borne ainsi que les téléphones sont raccordés à un commutateur 24ports.
+Pour les médecins, infirmières, deux bornes WiFi sont mise en place et deux ordinateurs.
+Ces terminaux font partie du VLAN Données-Interne. Deux téléphones sont aussi présent pour le personnel, ils font partie du VLAN VoIP-Interne.
+Les terminaux internes sont relié à un commutateur 12ports.
+Les commutateurs se situent dans un local pour chaque étage.
+
+Les commutateurs ce trouvant à chaque étage sont relié directement au commutateur principal ce situant dans la salle du niveau 0.
+
+%
+%
+\subsection{Schéma du réseau}

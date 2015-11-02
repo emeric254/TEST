@@ -7,22 +7,61 @@
 L’objectif principal est d’assurer un service performant, péren et sécurisé tant pour le personnel que pour les patients.
 Le réseau d'un hôpital ne dispose pas spécialement de performances de débit minimum mais demande une stabilité, une haute disponibilité et une sécurité très importante.
 
-Plusieurs hypothèses peuvent répondre au cahier des charges demandé respectant les critères suivants :
+Plusieurs solutions peuvent répondre à ce cahier des charges en respectant les critères suivants, nous proposerons la solution qui nous parait la plus adaptée à cette situation:
 \begin{itemize}
-\item Budget ;
-\item Topologie réseau ;
-\item La durée de l’évolution.
+\item La fiabilite ;
+\item Le coût ;
+\item La sécurité ;
+\item La durée de mis en place.
 \end{itemize}
 
 
+\begin{figure}[!ht]
+    \center
+    \includegraphics[width=0.8\textwidth]{./images/interco-batiment.png}
+    \caption{Interconnexion du nouveau bâtiment avec l'ancien}
+\end{figure}
+
+
+A FINIR ..........
+
 %
 %
-\subsection{Équipements nécessaires et usages}
+\subsection{Description du bâtiment}
 
 Il est important de savoir quels équipements et périphériques sont nécessaires au personnel.
-Le nouveau bâtiment comporte 20 chambres par étages de 12 m² soit (4m*3m).
-De plus la longueur du bâtiment serait d’environ 35 mètres de long et 11 mètres de large.
-Ces données seront utiles pour la mise en place de notre réseau.
+Ces données seront utiles pour déterminer l'architecture du réseau.
+Dans un premier temps nous allons nous intéresser aux spécificités de chaque étage.
+
+Le niveau -2 contient seulement un parking et les vestiaires du personnel.
+Aucun accès réseau n'est nécessaire au niveau métier.
+Ce niveau est aussi l'arrivée du tunnel reliant les deux bâtiments, c'est donc aussi ici que le lien d'interconnexion des deux bâtiments sera installé.
+Ce lien devra monter au travers de l'étage supérieur, ce dernier ne contient que des salles d'opération et de consultation, pour rejoindre le rez-de-chaussée.
+
+Le niveau -1, qui est donc l'étage des blocs opératoires et des salles de consultation, contient tous les équipements médicaux.
+Ces équipements posent certaines contraintes comme par exemple des contraintes en terme de pollution électromagnétique pour les IRM.
+Les ordinateurs connectés sur ces appareils sont aussi très vulnérables : ces postes tournent sous des versions obsolètes de systèmes d'exploitation.
+Ils doivent donc être isolés dans le réseau et ne pas être connectés a Internet.
+
+Le rez-de-chaussée contient la salle d'accueil, la salle d'attente et la salle dédiée au réseau informatique.
+C'est dans cette dernière que le lien vers l'autre bâtiment sera connecté.
+Cette salle contiendra donc le coeur de réseau de ce bâtiment.
+Le maximum d'équipements y est aussi installer pour alléger les armoires techniques de dimensions limitées des autres étages .
+
+Le premier étage est composé des bureaux des médecins, des salles de réunions ...
+
+Les trois derniers étages sont composés des chambres des patients.
+Chaque étage comporte 20 chambres ayant chacune des dimensions avoisinant les 12 m2 (4m*3m).
+
+A FINIR ..........
+
+
+
+
+
+
+
+\subsection{A trier}
 
 
 Concernant les étages de ce nouveau bâtiment, nous disposeront pour les étages :
@@ -111,21 +150,21 @@ N 0 15 (3par bueraus + 2 acceuil)
 N1 4 (1 par salle de réunion et
 N2/4 8 (2par étages a coté des PC fixes)
 
-Téléphone VOIP Fixe destiné aux personnels
-    Téléphone
-    GXP1450 HD Grandstream
-    Technologie
-    DECT 4 appels simultanés, groupement d’appels, appel entrant, attente, codec vocaux, service sécurisé HTTPS/TFTP/SRTP
-interface RJ45, PoE
-    Quantité
-    32
-    Prix
-    54.43 €
-    Image
+%~ Téléphone VOIP Fixe destiné aux personnels
+    %~ Téléphone
+    %~ GXP1450 HD Grandstream
+    %~ Technologie
+    %~ DECT 4 appels simultanés, groupement d’appels, appel entrant, attente, codec vocaux, service sécurisé HTTPS/TFTP/SRTP
+%~ interface RJ45, PoE
+    %~ Quantité
+    %~ 32
+    %~ Prix
+    %~ 54.43 €
+    %~ Image
 
 
-    source
-    Voipango.fr source
+    %~ source
+    %~ Voipango.fr source
 
 
 Il y a aussi des téléphones dans chaque chambre pour les patients. Ceux si seront beaucoup moins fonctionnel car il n’y a pas la même utilisation.
@@ -136,20 +175,20 @@ Il y aura donc 60 téléphones a raccorder en plus sur le réseau.
 
 
 
-Téléphone VOIP Fixe déstiné aux patients
-    Téléphone
-    Alcatel Temporis IP100
-    Technologie
-    PoE,VOIP
-    Quantité
-    60
-    Prix
-    46.90 €
-    Image
+%~ Téléphone VOIP Fixe déstiné aux patients
+    %~ Téléphone
+    %~ Alcatel Temporis IP100
+    %~ Technologie
+    %~ PoE,VOIP
+    %~ Quantité
+    %~ 60
+    %~ Prix
+    %~ 46.90 €
+    %~ Image
 
 
-    source
-    http://www.ldlc.com/fiche/PB00164972.html
+    %~ source
+    %~ http://www.ldlc.com/fiche/PB00164972.html
 
 
 
@@ -173,27 +212,27 @@ Pour quantifier ce besoin, à l’étage N1 des bureaux médecins seront créés
 
 
 
-Téléphone VOIP sans fil
-    Téléphone
-    DP715 Grandstream
-    Technologie
-    DECT 4 appels simultanés, groupement d’appels, appel entrant, attente, codec vocaux, service sécurisé HTTPS/TFTP/SRTP
-interface RJ45
-    Portée
-    Les stations de base installés prendront le relai donc 50 m en intérieur
-    Quantité
-    1 pack = 3 combinés donc 3 packs pour les médecins + 1 par étage
-3+ 1*6 = 9 packs
-    autonomie
-    10 h communication, 80 heures en veille, 16h temps de charge
-    Prix
-    139.95 € prix total 9*139.95 = 1259.55 €
-    Image
+%~ Téléphone VOIP sans fil
+    %~ Téléphone
+    %~ DP715 Grandstream
+    %~ Technologie
+    %~ DECT 4 appels simultanés, groupement d’appels, appel entrant, attente, codec vocaux, service sécurisé HTTPS/TFTP/SRTP
+%~ interface RJ45
+    %~ Portée
+    %~ Les stations de base installés prendront le relai donc 50 m en intérieur
+    %~ Quantité
+    %~ 1 pack = 3 combinés donc 3 packs pour les médecins + 1 par étage
+%~ 3+ 1*6 = 9 packs
+    %~ autonomie
+    %~ 10 h communication, 80 heures en veille, 16h temps de charge
+    %~ Prix
+    %~ 139.95 € prix total 9*139.95 = 1259.55 €
+    %~ Image
 
- avec 2 combinés
-    source
-    http://www.onedirect.fr/produits/grandstream/grandstream-dp715#tab3
-http://www.onedirect.fr/produits/grandstream/grandstream-dp715#tab3
+ %~ avec 2 combinés
+    %~ source
+    %~ http://www.onedirect.fr/produits/grandstream/grandstream-dp715#tab3
+%~ http://www.onedirect.fr/produits/grandstream/grandstream-dp715#tab3
 
 
 
@@ -212,22 +251,22 @@ Pour quantifier ce besoin, on part du principe qu’il y a 1 infirmière pour 15
 
 
 
-Tablette ipad mini 2
-    Technologie
-    802.11n wifi et cellulaire
-    autonomie
-    10 heures en fonctionnement
-    portée
-    En fonction des bornes Wi-fi (apple = wlan pourri)
-    polyvalence métier
-    Applications dédiées, facilité de navigation, monopole, swag ...
-    image
+%~ Tablette ipad mini 2
+    %~ Technologie
+    %~ 802.11n wifi et cellulaire
+    %~ autonomie
+    %~ 10 heures en fonctionnement
+    %~ portée
+    %~ En fonction des bornes Wi-fi (apple = wlan pourri)
+    %~ polyvalence métier
+    %~ Applications dédiées, facilité de navigation, monopole, swag ...
+    %~ image
 
 
-    prix
-    299 € site officiel Apple
-    source
-    http://www.apple.com/fr/shop/buy-ipad/ipad-mini-2/16go-gris-sid%C3%A9ral-wifi
+    %~ prix
+    %~ 299 € site officiel Apple
+    %~ source
+    %~ http://www.apple.com/fr/shop/buy-ipad/ipad-mini-2/16go-gris-sid%C3%A9ral-wifi
 
 
 Postes de travail
@@ -250,63 +289,60 @@ Voici un tableau descriptif
 
 
 
-Caractéristiques
-    Ordinateur
-médecins
-laboratoire
-bloc
-réunion
-accueil
-    Ordinateur étage
-administratif
-    ecran
-    Souris et clavier avec fil
-    Outil carte Vitale (Bureau médecin)
-    Marque
-    DELL OptiPlex 7020 Small Form Factor
+%~ Caractéristiques
+    %~ Ordinateur
+%~ médecins
+%~ laboratoire
+%~ bloc
+%~ réunion
+%~ accueil
+    %~ Ordinateur étage
+%~ administratif
+    %~ ecran
+    %~ Souris et clavier avec fil
+    %~ Outil carte Vitale (Bureau médecin)
+    %~ Marque
+    %~ DELL OptiPlex 7020 Small Form Factor
 
 
-    DELL Ordinateur de bureau Vostro
+    %~ DELL Ordinateur de bureau Vostro
 
 
-    Philips 18.5" LED - 193V5LSB2
+    %~ Philips 18.5" LED - 193V5LSB2
 
 
-    dell
-    Ingenico Xiring
-    processeur
-    4 Coeurs i5 4590
-    Processor G3260 (3M Cache, up to 3.30 GHz)
-    /
-    /
+    %~ dell
+    %~ Ingenico Xiring
+    %~ processeur
+    %~ 4 Coeurs i5 4590
+    %~ Processor G3260 (3M Cache, up to 3.30 GHz)
+    %~ /
+    %~ /
 
 
-    Capacité/ caractéristique
-    500 Go
-    500 Go
-    18.5 pouces
-    usb
-    USB
-    Mémoire
-    4 Go DDR3
-    4 Go DDR3
-    /
-
-
-
-
-    OS
-    Windows 7 professionnel
-    Windows 7 professionnel
-    /
+    %~ Capacité/ caractéristique
+    %~ 500 Go
+    %~ 500 Go
+    %~ 18.5 pouces
+    %~ usb
+    %~ USB
+    %~ Mémoire
+    %~ 4 Go DDR3
+    %~ 4 Go DDR3
+    %~ /
 
 
 
 
-    image
+    %~ OS
+    %~ Windows 7 professionnel
+    %~ Windows 7 professionnel
+    %~ /
 
 
 
+
+    %~ image
 
 
 
@@ -315,26 +351,29 @@ administratif
 
 
 
-    prix
-    547 € Ht
-soit 28* 547 = 15 316 € * TVA = 19 317.9 €
-    15 + 6 =21 ordinateurs
-349 € *21 +19.6% = 8765,4€
-    85.95 €
-soit 49 *85.95 = 4211.95 €
-    Clavier 14.79 €
-souris 18.48 €
-= 1630.23 €
-    229 €
-pour 10 medecins + 2 accueil
-229*12 = 2748 €
-    source
-    http://www.dell.com/fr/entreprise/p/optiplex-7020-desktop/pd?oc=sm010d7020sff1h161&model_id=optiplex-7020-desktop
-    http://www.dell.com/fr/entreprise/p/vostro-3900-mini-tower/pd?ref=PD_OC
-    http://www.ldlc.com/fiche/PB00191040.html
-    http://www.microdistri.com/dell-kb213-p-5782663.html?tracking=52f944942ed03&gclid=CNmE6vWW78gCFYoEwwodGEIBwA
-http://www.asdiscount.com/clavier-souris-tablette/1450171-dell-570-11476-souris-sans-fil-noir.html
-    http://www.lecteur-vitale.com/fp_consulteur_proplus_usb.php
+
+
+
+    %~ prix
+    %~ 547 € Ht
+%~ soit 28* 547 = 15 316 € * TVA = 19 317.9 €
+    %~ 15 + 6 =21 ordinateurs
+%~ 349 € *21 +19.6% = 8765,4€
+    %~ 85.95 €
+%~ soit 49 *85.95 = 4211.95 €
+    %~ Clavier 14.79 €
+%~ souris 18.48 €
+%~ = 1630.23 €
+    %~ 229 €
+%~ pour 10 medecins + 2 accueil
+%~ 229*12 = 2748 €
+    %~ source
+    %~ http://www.dell.com/fr/entreprise/p/optiplex-7020-desktop/pd?oc=sm010d7020sff1h161&model_id=optiplex-7020-desktop
+    %~ http://www.dell.com/fr/entreprise/p/vostro-3900-mini-tower/pd?ref=PD_OC
+    %~ http://www.ldlc.com/fiche/PB00191040.html
+    %~ http://www.microdistri.com/dell-kb213-p-5782663.html?tracking=52f944942ed03&gclid=CNmE6vWW78gCFYoEwwodGEIBwA
+%~ http://www.asdiscount.com/clavier-souris-tablette/1450171-dell-570-11476-souris-sans-fil-noir.html
+    %~ http://www.lecteur-vitale.com/fp_consulteur_proplus_usb.php
 
 
 
@@ -391,78 +430,86 @@ Matériels fournit (tablettes, postes, et téléphones IP)
 
 
 
-On peut mettre des mots en \emph{italique},
-en \textsc{petites Majuscules} ou
-en \texttt{largeur fixe (machine à écrire)}.
-
-Voici un deuxième paragraphe avec une formule mathématique simple : $e = mc^2$.
-
-Un troisième avec des \og guillemet français \fg{}.
 
 
-%
-\subsubsection{Écrire en anglais}
-
-\foreignlanguage{english}{Do you speak French? Does anybody here speak french?}
 
 
-%
-\subsection{Listes}
-
-\begin{itemize}
-\item Liste classique ;
-\item un élément ;
-\item et un autre élément.
-\end{itemize}
-\vspace{\parskip} % espace entre paragraphes
-
-\begin{enumerate}
-\item Une liste numéroté
-\item deux
-\item trois
-\end{enumerate}
-\vspace{\parskip}
-
-\begin{description}
-\item[Description] C'est bien pour des définitions.
-\item[Deux] Ou pour faire un liste spéciale.
-\end{description}
-\vspace{\parskip}
 
 
-%
-\subsection{Références}
-
-Voici une référence à l'image de la figure \ref{latex} page \pageref{latex} et une autre vers la partie \ref{p2} page \pageref{p2}.
-
-On peut citer un livre\,\up{\cite{lpp}} et on précise les détails à la fin du rapport dans la partie références.
 
 
-%
-\subsection{Note de bas de page}
+%~ On peut mettre des mots en \emph{italique},
+%~ en \textsc{petites Majuscules} ou
+%~ en \texttt{largeur fixe (machine à écrire)}.
 
-Voici une note\,\footnote{Texte de bas de page} de bas de page.
-Une deuxième\,\footnotemark{} déclarée différemment.
-La même note\,\footnotemark[\value{footnote}] que précédemment.
+%~ Voici un deuxième paragraphe avec une formule mathématique simple : $e = mc^2$.
 
-\footnotetext{Il a deux références vers cette note}
+%~ Un troisième avec des \og guillemet français \fg{}.
 
 
-%
-\subsection{Figure}
+%~ %
+%~ \subsubsection{Écrire en anglais}
 
-\begin{figure}[!ht]
-    \center
-    \includegraphics[]{./images/LaTeX_logo.png}
-    \caption{latex | taille original}
-    \label{latex}
-\end{figure}
+%~ \foreignlanguage{english}{Do you speak French? Does anybody here speak french?}
 
-\begin{figure}[!ht]
-    \center
-    \includegraphics[width=0.5\textwidth]{./images/LaTeX_logo.png}
-    \caption{latex | 50\% de la largeur de la page}
-\end{figure}
+
+%~ %
+%~ \subsection{Listes}
+
+%~ \begin{itemize}
+%~ \item Liste classique ;
+%~ \item un élément ;
+%~ \item et un autre élément.
+%~ \end{itemize}
+%~ \vspace{\parskip} % espace entre paragraphes
+
+%~ \begin{enumerate}
+%~ \item Une liste numéroté
+%~ \item deux
+%~ \item trois
+%~ \end{enumerate}
+%~ \vspace{\parskip}
+
+%~ \begin{description}
+%~ \item[Description] C'est bien pour des définitions.
+%~ \item[Deux] Ou pour faire un liste spéciale.
+%~ \end{description}
+%~ \vspace{\parskip}
+
+
+%~ %
+%~ \subsection{Références}
+
+%~ Voici une référence à l'image de la figure \ref{latex} page \pageref{latex} et une autre vers la partie \ref{p2} page \pageref{p2}.
+
+%~ On peut citer un livre\,\up{\cite{lpp}} et on précise les détails à la fin du rapport dans la partie références.
+
+
+%~ %
+%~ \subsection{Note de bas de page}
+
+%~ Voici une note\,\footnote{Texte de bas de page} de bas de page.
+%~ Une deuxième\,\footnotemark{} déclarée différemment.
+%~ La même note\,\footnotemark[\value{footnote}] que précédemment.
+
+%~ \footnotetext{Il a deux références vers cette note}
+
+
+%~ %
+%~ \subsection{Figure}
+
+%~ \begin{figure}[!ht]
+    %~ \center
+    %~ \includegraphics[]{./images/LaTeX_logo.png}
+    %~ \caption{latex | taille original}
+    %~ \label{latex}
+%~ \end{figure}
+
+%~ \begin{figure}[!ht]
+    %~ \center
+    %~ \includegraphics[width=0.5\textwidth]{./images/LaTeX_logo.png}
+    %~ \caption{latex | 50\% de la largeur de la page}
+%~ \end{figure}
 
 
 

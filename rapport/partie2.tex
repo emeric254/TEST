@@ -1,14 +1,93 @@
-\section{Citation Wikipédia}
-\label{p2}
+\section{Architecture Logique}
 
-LaTeX est un langage et un système de composition de documents créé par Leslie Lamport en 1983.
-Plus exactement, il s'agit d'une collection de macro-commandes destinées à faciliter l'utilisation du \og processeur de texte \fg{} TeX de Donald Knuth.
-Depuis 1993, il est maintenu par le LaTeX3 Project team.
-La première version utilisée largement, appelée LaTeX2.09, est sortie en 1984.
-Une révision majeure, appelée LaTeX2 epsilon est sortie en 1991.
+Pour répondre au besoin présenter ci-dessus, nous allons d'abord établir une architecture logique de l'infrastructure afin de représenter les équipements ainsi que les interconnexions de ceux-ci.
+L'architecture logique à pour but d'identifier les différents rôles et services de chaque équipement à installer afin de justifier la qualité de notre proposition et de bien sélectionner les services attendus.
 
-Le nom est l'abréviation de Lamport TeX. On écrit souvent \LaTeX, le logiciel permettant les mises en forme correspondant au logo.
+%
+%
+%~ \subsection{Schéma logique hiérarchique}
 
-Du fait de sa relative simplicité, il est devenu la méthode privilégiée d'écriture de documents scientifiques employant TeX.
-Il est particulièrement utilisé dans les domaines techniques et scientifiques pour la production de documents de taille moyenne ou importante (thèse ou livre, par exemple).
-Néanmoins, il peut aussi être employé pour générer des documents de types variés (par exemple, des lettres, ou des transparents).
+\begin{figure}[!ht]
+    \center
+    \includegraphics[width=1\textwidth]{./images/schema-logique.png}
+    \caption{Schéma logique hiérarchique du réseau}
+\end{figure}
+
+Couche coeur:
+C’est la couche supérieure.
+Son rôle est de relier entre eux les différents segments du réseau, par exemple les sites distants, les LANs ou les étages d'une société.
+Dans notre cas le coeur du réseau sera constitué de deux routeurs.
+
+Couche distribution:
+Cette couche consiste à router, filtrer autoriser ou non les paquets.
+C'est a ce niveau que nous allons donc crée des VLANs sur les routeurs afin de délimiter l'étendu du réseau.
+Nous décidons de faire deux VLAN principaux : VLAN Interne, VLAN Visiteur.
+
+Couche Accés:
+Cette couche est la dernière avant de transmettre le paquet à l'hôte. Elle ne contient que des switchs qui permettrons de relayer l'information.
+
+Couche Hôtes:
+Il s'y trouve ici les différents types de terminaux .Tels que les terminaux portatifs, les ordinateurs fixe, les appareils médicaux( Scanner, radio etc).
+
+%
+%
+%~ \subsection{VLANs}
+Nous avons décider de séparer le réseau interne avec celui des visiteurs pour une raison de qualité de service.
+Le besoin et la sécurité n'es pas la même entre ses deux réseaux.
+
+%
+%
+\subsection{VLAN interne}
+
+Le VLAN Interne est divisé à l'intérieur en 3 VLANs.
+
+VLAN Données-Interne:
+Il regroupe les différents équipements des bureaux administratif, des salles de réunions et de l'accueil.
+
+VLAN VoIP-Interne:
+Il regroupe tous les équipements téléphoniques du personnel de l'hôpital, afin d'assurer une qualité de service vis a vis de la communication dans l'hôpital.
+
+VLAN Médical:
+Il regroupe tous les équipements médicaux tels que les scanners , IRM et autre machines a usage médicales. Il y a aussi les informations des patients stocké dans celui-ci.
+
+%
+%
+\subsection{VLAN visiteur}
+
+Le VLAN Visiteur est lui divisé en 2 VLANs.
+
+VLAN Données-Visiteur:
+Il regroupe toutes les données qui seront émises par le visiteur a l'aide de son téléphone portable ou tablette par exemple.
+
+VLAN VoIP-Visiteur:
+Il regroupe  tous les équipements téléphoniques fixe installer dans les chambres pour les patients.
+
+
+
+%
+%
+\subsection{A FINIR}
+
+adressage + plan nommage
+faire des sous réseau
+
+Etages
+VLAN
+plage d’adresse
+n0-n4
+VLAN DonnéesInterne
+10.2.0.0/16
+Tous
+VLAN Médical
+10.1.0.0/16
+Tous
+VLAN VoIPInterne
+10.0.0.0/16
+n2-4
+VLAN
+VoIPVisiteur
+10.128.0.0/16
+n0-4
+VLAN DonnéesVisiteur
+10.129.0.0/16
+
