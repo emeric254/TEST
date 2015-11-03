@@ -4,10 +4,25 @@
 %
 \subsection{Contexte}
 
-L’objectif principal est d’assurer un service performant, péren et sécurisé tant pour le personnel que pour les patients.
-Le réseau d'un hôpital ne dispose pas spécialement de performances de débit minimum mais demande une stabilité, une haute disponibilité et une sécurité très importante.
+On se situe dans le cadre d'un établissement hospitalier, une clinique, qui souhaite développer une offre médicale dédiée aux maladies des voies respiratoires.
+Pour cela un nouveau pôle est construit à 50 mètres du bâtiment déjà existant de la clinique.
+Nous sommes chargés de réaliser l'étude de l'architecture réseau à implanter dans ce nouveau bâtiment.
 
-Plusieurs solutions peuvent répondre à ce cahier des charges en respectant les critères suivants, nous proposerons la solution qui nous parait la plus adaptée à cette situation:
+%
+
+Ce réseau devra répondre à une certaine tolérance aux pannes puisque utilisé à des fins médicales.
+Une interconnexion avec le bâtiment adjacent sera aussi nécessaire.
+Dans l'architecture réseau actuelle le cœur de réseau et l'accès à Internet se trouvent dans le bâtiment adjacent.
+Le déploiement de la nouvelle portion de réseau ne devra avoir aucune incidence sur le réseau déjà existant de la clinique.
+Les dimensions du bâtiment sont d'environ 35 mètres de long pour 11 mètres de large.
+Il est composé de 6 étages ayant chacun différents usages.
+Les différences entre ces étages seront un point de départ important pour établir l'architecture réseau : par exemple certains équipements médicaux nécessitent d'être inter-connectés, d'autres ne doivent en aucun cas être parasités pour assurer leur fonctionnement.
+
+%
+
+L'objectif principal est d'assurer un service performant, péren et sécurisé tant pour le personnel que pour les patients.
+Le réseau d'un hôpital ne dispose pas spécialement de performances de débit minimum mais demande une stabilité, une haute disponibilité et une sécurité très importante.
+Plusieurs solutions peuvent répondre à ce cahier des charges en respectant les critères suivants, nous proposerons la solution qui nous parait la plus adaptée à cette situation :
 \begin{itemize}
 \item La fiabilite ;
 \item Le coût ;
@@ -15,6 +30,7 @@ Plusieurs solutions peuvent répondre à ce cahier des charges en respectant les
 \item La durée de mis en place.
 \end{itemize}
 
+%
 
 \begin{figure}[!ht]
     \center
@@ -22,420 +38,59 @@ Plusieurs solutions peuvent répondre à ce cahier des charges en respectant les
     \caption{Interconnexion du nouveau bâtiment avec l'ancien}
 \end{figure}
 
+%
 
-A FINIR ..........
+L'ensemble du personnel peut communiquer via les téléphones disponible dans l'hôpital.
+Dans l'enceinte du bâtiment, la connection d'équipements sans fil doit être rendu possible pour le personnel dans le cadre de leur travail.
+L'accés à internet est fournit aux patients via une connection sans fil.
+
 
 %
 %
 \subsection{Description du bâtiment}
 
-Il est important de savoir quels équipements et périphériques sont nécessaires au personnel.
-Ces données seront utiles pour déterminer l'architecture du réseau.
-Dans un premier temps nous allons nous intéresser aux spécificités de chaque étage.
+Il est important de savoir comment le batiment est concu afin de définir les équipements et périphériques utiles au personnels et aux patients.
+Ces informations seront utiles pour déterminer l'architecture du réseau.
+Dans un premier temps nous allons nous intéresser aux spécificités de chaque étage et aux dimensions des locaux.
+
+%
 
 Le niveau -2 contient seulement un parking et les vestiaires du personnel.
 Aucun accès réseau n'est nécessaire au niveau métier.
-Ce niveau est aussi l'arrivée du tunnel reliant les deux bâtiments, c'est donc aussi ici que le lien d'interconnexion des deux bâtiments sera installé.
-Ce lien devra monter au travers de l'étage supérieur, ce dernier ne contient que des salles d'opération et de consultation, pour rejoindre le rez-de-chaussée.
+Ce niveau est aussi l'arrivée du tunnel reliant les deux bâtiments, c'est donc aussi ici que le lien d'interconnexion des deux bâtiments est installé.
+Ce lien doit monter jusqu'au rez-de-chaussée afin d'atteindre une salle dédié au infrastructure du réseau.
 
-Le niveau -1, qui est donc l'étage des blocs opératoires et des salles de consultation, contient tous les équipements médicaux.
+%
+
+Le niveau -1, qui est l'étage le plus critique car il héberge deux blocs opératoires et 4 salles d'imageries, c'est donc ici que les équipements médicaux se situent.
 Ces équipements posent certaines contraintes comme par exemple des contraintes en terme de pollution électromagnétique pour les IRM.
 Les ordinateurs connectés sur ces appareils sont aussi très vulnérables : ces postes tournent sous des versions obsolètes de systèmes d'exploitation.
 Ils doivent donc être isolés dans le réseau et ne pas être connectés a Internet.
 
-Le rez-de-chaussée contient la salle d'accueil, la salle d'attente et la salle dédiée au réseau informatique.
+%
+
+Le rez-de-chaussée, appelé par la suite niveau 0, contient une salle d'accueil, une salle d'attente, sept bureaux dédiés au personnel administratif et une salle dédiée au réseau informatique.
 C'est dans cette dernière que le lien vers l'autre bâtiment sera connecté.
 Cette salle contiendra donc le coeur de réseau de ce bâtiment.
 Le maximum d'équipements y est aussi installer pour alléger les armoires techniques de dimensions limitées des autres étages .
 
-Le premier étage est composé des bureaux des médecins, des salles de réunions ...
+%
 
-Les trois derniers étages sont composés des chambres des patients.
-Chaque étage comporte 20 chambres ayant chacune des dimensions avoisinant les 12 m2 (4m*3m).
+Le premier étage (niveau 1) est composé de cinq bureaux de médecins, deux salles de réunions et deux laboratoire.
+Cet étage est donc dédié uniquement au personnel de la clinique.
 
-A FINIR ..........
+%
 
+Les trois derniers étages (niveau 2 à 4) sont composés des chambres des patients.
+Chaque étage comporte 15 chambres ayant chacune des dimensions avoisinant les $12 m^2$ $(4m*3m)$.
 
+%
 
+Enfin, à chaque étage un petit local, une armoire technique, est prévu afin de recevoir quelques équipements réseaux.
 
 
-
-
-\subsection{A trier}
-
-
-Concernant les étages de ce nouveau bâtiment, nous disposeront pour les étages :
-N-2 : Parking et vestiaires, nous proposons d’installer l’arrivée mais aussi le départ de la connexion en Fibre Optique entre les deux bâtiments.
-
-
-Équipements proposés :
-* Une Fibre reliant les deux bâtiments. Cette fibre est redondée et sera connectées à la salle serveur (cœur du réseau) à l’étage du dessus.
-
-
-N-1 : Il s’agit du premier sous-sol. Ce niveau est critique du fait par sa composition de deux blocs opératoires et des salles d’imageries (scanners, radio etc…) Nous ne mettrons pas de wifi à ce niveau pour la simple raison que les équipements médicaux pourraient interférer au réseau sans fil. Cependant, un réseau médical filaire est conseillé ainsi que la TOIP.
-Equipements proposés :
-* Un téléphone IP à chaque bloc opératoire au nombre de 2 avec leur poste respectif
-* Chaque bloc opératoires devrait avoir au moins 3 prises Ethernet de type Rj45
-* Dans l’hypothèse qu’il y a 4 salles d’imageries. 3 prises Ethernet de type Rj45 par salle est nécessaire. Avec au total 1 poste par salle et 1 téléphone IP. Les autres prises sont nécessaires pour les machines d’imagerie
-* 2 commutateurs.
-
-
-N0 : Accueil et bureaux administratifs. Ici la TOIP est nécessaire pour pouvoir communiquer en interne ou depuis l’extérieur. Un wifi sera mis en place et sera divisé en deux. Une partie dédiée aux salariés et une partie pour les patients. Une salle est prévue à cet étage pour la salle serveur qui permettra d’avoir un cœur de réseau à ce niveau.
-
-
-Equipements proposés :
-* 2 téléphones IP PoE à l’accueil et accès Internet
-* 2 ordinateurs fixes pour l’accueil
-* Prenons le principe qu’il y 5 bureaux administratifs dont 3 personnels dans chacun d’eux. Il faudra 15 téléphones IP PoE leur donnant accès à internet avec leur poste respectif.
-* Au niveau du cœur de réseau. 2 serveurs redondés en répartition de charges, prendront en charge les services de sauvegarde, de Base de données et prendront le rôle de routeur pour donner l’accès à internet par le bié de l’ancien bâtiment suivant plusieurs Vlan.
-* Un onduleur
-* SAN
-* Commutateur
-
-
-Chaque étage dispose d'un local technique dédié.
-
-
-N1 : Ce niveau est dédié aux bureaux des médecins, aux laboratoires de recherches et aux réunions. Ici un réseau médical sécurisé est important de le souligner. De la Visio-conférence serait un plus pour bien travailler. A ce niveau également, la TOIP sera présente. L’hypothèse est de 10 bureaux médecins, 2 laboratoires de recherches et 2 salles de réunion.
-
-
-Equipements proposés :
-* 2 équipements visio-conférence aux deux salles de réunion
-* 1 téléphone VOIP par salle de réunion
-* 1 ordinateur fixe par salle de réunion
-* Dans chaque laboratoire nous proposeront 4 ordinateurs fixes  Ethernet avec la TOIP
-* Ainsi dans chaque bureau un seul poste est disponible donc 10 prises Ethernet de type Rj45 avec la TOIP.
-* 2 commutateurs dans le local prévu à cet effet
-
-
-
-
-N2-N4 : chambres des patients au nombre de 20 par étage.  Chaque chambre disposera d’une connexion de type RJ45 dédié à la téléphonie permettant l’accès TOIP. Nous ne prenons pas en compte les prises électriques ainsi que la télévision. [a]
-Le personnel présent dans l’ensemble de ces étages (N2 à N4), bénéficiera de deux postes connectés à Internet.
-Un accès Wifi sera aussi disponible et bien séparé pour les visiteurs (patients) et le personnel. Pour la longueur du bâtiment, sur ces 35 mètres, 4 bornes wifi suffiront pour couvrir chaque étages. La technologie PoE (Power Over Ethernet) sera privilégiée, permettant d’être alimenté par le câble Ethernet.
-
-
-Equipements proposés :
-* Il faudra donc 20 prises Rj45 offrant la téléphonie par IP
-* 2 prises RJ45 dédiées à l’accès à Internet pour deux postes. Donc 6 prises à chaque étage
-* 2 bornes Wifi pour chaque étage dédié au personnel soit 6 bornes
-* 2 bornes Wifi par étage dédiées pour les patients soit 6 bornes
-* 2 commutateurs à chaque étage soit 6 au total
-
-
-L’ensemble de ces éléments sera dirigé au local de chaque étage créé à cet effet relié à des commutateurs.
-
-
-Besoin Métier
-
-
-
-
-Les besoins métier touchent l’ensemble du personnel présent dans l’établissement hospitalier. Chaque personnel a sa fonction métier où il est nécessaire d’utiliser des outils informatisés.
-
-
-
-
-Téléphones VOIP fixe
-
-
-Tout d’abord les médecins et autre personnels de l'hôpital doit être en mesure de communiquer avec ses partenaires de travail. Pour cela le premier outil mis en place sera le telephone fixe que l’on trouvera à plusieurs endroit. Toute la telephonie utilisera la technoligie VOIP (voix sur IP ), ainsi que la technologie Power over Ethernet (PoE) c’est a dire qu’il n’y a pas besoin de Prise d’alimentation, l’alimention passe par les cables ethernet. Cela va facilité l’installation et va permettre de tout centraliser. Il y aura un annuaire centraliser, un multi appel, transfert et d’autre options optimiser pour le confort de travail des utilisateurs.
-
-
-Quantité detaillé:
-
-
-N -1 6 (2 salles d’operations + 4 salles d’imageries)
-N 0 15 (3par bueraus + 2 acceuil)
-N1 4 (1 par salle de réunion et
-N2/4 8 (2par étages a coté des PC fixes)
-
-%~ Téléphone VOIP Fixe destiné aux personnels
-    %~ Téléphone
-    %~ GXP1450 HD Grandstream
-    %~ Technologie
-    %~ DECT 4 appels simultanés, groupement d’appels, appel entrant, attente, codec vocaux, service sécurisé HTTPS/TFTP/SRTP
-%~ interface RJ45, PoE
-    %~ Quantité
-    %~ 32
-    %~ Prix
-    %~ 54.43 €
-    %~ Image
-
-
-    %~ source
-    %~ Voipango.fr source
-
-
-Il y a aussi des téléphones dans chaque chambre pour les patients. Ceux si seront beaucoup moins fonctionnel car il n’y a pas la même utilisation.
-
-
-Il y aura donc 60 téléphones a raccorder en plus sur le réseau.
-
-
-
-
-%~ Téléphone VOIP Fixe déstiné aux patients
-    %~ Téléphone
-    %~ Alcatel Temporis IP100
-    %~ Technologie
-    %~ PoE,VOIP
-    %~ Quantité
-    %~ 60
-    %~ Prix
-    %~ 46.90 €
-    %~ Image
-
-
-    %~ source
-    %~ http://www.ldlc.com/fiche/PB00164972.html
-
-
-
-
-
-
-
-
-
-
-Téléphones VOIP sans fil
-Ici dans cette nouvelle solution proposée, les médecins sont majoritairement mobiles dans les services et consultent sur plusieurs étages mais aussi à leur bureau. Pour cela, un téléphone IP sans fil répondra à leur besoins. Communiquer avec un autre service, joindre un personnel, demander des renseignements, répondre à des questions sur les pathologies patients etc....
-Ce téléphone IP sans fil ne devra pas être trop imposant afin de pouvoir l’insérer dans sa blouse, et devra répondre à une longue portée.
-
-
-La fonctionnalité DECT Digital “Enhanced Cordless Telephone” est un téléphone IP numérique sans fil. Cette norme est destiné pour tout usages ainsi qu’aux entreprises sur une gamme de frequence de 1880 à 1900 Mhz. De nos jour, cette gamme est utilisées pour des communication vocales afin d’assurer l'interfonctionnement des équipements.
-
-
-Pour quantifier ce besoin, à l’étage N1 des bureaux médecins seront créés. 10 bureaux médecin à ce niveau là. Mais aussi des surveillants de service auront besoin d’un téléphone VOIP sans fil. Dans l’hypothèse où il y a un surveillant par étage. Pour finir, quelques téléphones seront disponible à chaque étage pour des cadres de santé par exemple.
-
-
-
-
-%~ Téléphone VOIP sans fil
-    %~ Téléphone
-    %~ DP715 Grandstream
-    %~ Technologie
-    %~ DECT 4 appels simultanés, groupement d’appels, appel entrant, attente, codec vocaux, service sécurisé HTTPS/TFTP/SRTP
-%~ interface RJ45
-    %~ Portée
-    %~ Les stations de base installés prendront le relai donc 50 m en intérieur
-    %~ Quantité
-    %~ 1 pack = 3 combinés donc 3 packs pour les médecins + 1 par étage
-%~ 3+ 1*6 = 9 packs
-    %~ autonomie
-    %~ 10 h communication, 80 heures en veille, 16h temps de charge
-    %~ Prix
-    %~ 139.95 € prix total 9*139.95 = 1259.55 €
-    %~ Image
-
- %~ avec 2 combinés
-    %~ source
-    %~ http://www.onedirect.fr/produits/grandstream/grandstream-dp715#tab3
-%~ http://www.onedirect.fr/produits/grandstream/grandstream-dp715#tab3
-
-
-
-
-Terminaux mobiles
-
-
-Les terminaux mobiles dit tablettes numériques sont des outils facilitant l’activité professionnelle lorsque qu’un personnel est en déplacement. A l’aide du réseau Wi-Fi dédié pour le personnel, ainsi que des applications santé pourront être disponible en lien avec la base de données pour consulter les fiches patients.
-Une tablette intuitive de petite taille pour faciliter le transport serait un avantage pour le besoin des infirmières ainsi que des médecins.
-
-
-Pour quantifier ce besoin, on part du principe qu’il y a 1 infirmière pour 15 patients en moyenne soit 3 infirmières par étage pour voir plus large. 1 cadre de santé par étage et 10 médecins pour l’établissement. Nous comptons pas l’étage critique pour la simple raison qu’en sous sol il n’y aura pas de bornes Wi-fi car cela peut provoquer des dysfonctionnements au niveau des machines du bloc opératoire.
-
-
-
-
-
-
-%~ Tablette ipad mini 2
-    %~ Technologie
-    %~ 802.11n wifi et cellulaire
-    %~ autonomie
-    %~ 10 heures en fonctionnement
-    %~ portée
-    %~ En fonction des bornes Wi-fi (apple = wlan pourri)
-    %~ polyvalence métier
-    %~ Applications dédiées, facilité de navigation, monopole, swag ...
-    %~ image
-
-
-    %~ prix
-    %~ 299 € site officiel Apple
-    %~ source
-    %~ http://www.apple.com/fr/shop/buy-ipad/ipad-mini-2/16go-gris-sid%C3%A9ral-wifi
-
-
-Postes de travail
-
-
-Concernant les postes de travail, chacun d’eux ont une utilité précise pour chaque personnel présent.
-Un ordinateur fixe est l’outil de travail d’un médecin pour prescrire des pathologies, visionner des radios, consulter la fiche patient. Les infirmières aussi ont besoin de ces outils pour consulter les stocks des médicaments, et écrire leur compte rendu d’activité sur tel patient pour avoir un tracé etc…
-Des postes de travail sont aussi indispensables au niveau de l’accueil pour consulter les RDV, les agendas etc...
-Chaque poste médecins disposera d’un périphérique lecteur carte vitale pour faciliter la prise en charge et le remboursement de la sécurité sociale.
-
-
-Dans cette proposition :
-Au niveau N-1 un poste par bloc opératoire au nombre de deux, et avec 4 salles d’imagerie, un poste par salle
-Au niveau N-0 il y a 5 bureaux administratifs dont 3 personnels dans chacun d’eux soit au total 15 postes avec en plus 2 postes pour l’accueil
-Au niveau N1 10 breau médecin avec un ordinateur dans chaque bureau. 2 salles de réunion avec chacune d’elle un poste. Et 2 laboratoires avec dans chacune d’elle 4 postes fixes pour faire des recherches.
-et aux étages supérieurs 2 postes à chaque étage pour consulter les fiches patients, remplir des comptes rendus d’activité, gérer les plannings etc…
-Soit au total 2+4+15+2+10+2+8+6 = 49 postes fixes
-Voici un tableau descriptif
-
-
-
-
-%~ Caractéristiques
-    %~ Ordinateur
-%~ médecins
-%~ laboratoire
-%~ bloc
-%~ réunion
-%~ accueil
-    %~ Ordinateur étage
-%~ administratif
-    %~ ecran
-    %~ Souris et clavier avec fil
-    %~ Outil carte Vitale (Bureau médecin)
-    %~ Marque
-    %~ DELL OptiPlex 7020 Small Form Factor
-
-
-    %~ DELL Ordinateur de bureau Vostro
-
-
-    %~ Philips 18.5" LED - 193V5LSB2
-
-
-    %~ dell
-    %~ Ingenico Xiring
-    %~ processeur
-    %~ 4 Coeurs i5 4590
-    %~ Processor G3260 (3M Cache, up to 3.30 GHz)
-    %~ /
-    %~ /
-
-
-    %~ Capacité/ caractéristique
-    %~ 500 Go
-    %~ 500 Go
-    %~ 18.5 pouces
-    %~ usb
-    %~ USB
-    %~ Mémoire
-    %~ 4 Go DDR3
-    %~ 4 Go DDR3
-    %~ /
-
-
-
-
-    %~ OS
-    %~ Windows 7 professionnel
-    %~ Windows 7 professionnel
-    %~ /
-
-
-
-
-    %~ image
-
-
-
-
-
-
-
-
-
-
-
-    %~ prix
-    %~ 547 € Ht
-%~ soit 28* 547 = 15 316 € * TVA = 19 317.9 €
-    %~ 15 + 6 =21 ordinateurs
-%~ 349 € *21 +19.6% = 8765,4€
-    %~ 85.95 €
-%~ soit 49 *85.95 = 4211.95 €
-    %~ Clavier 14.79 €
-%~ souris 18.48 €
-%~ = 1630.23 €
-    %~ 229 €
-%~ pour 10 medecins + 2 accueil
-%~ 229*12 = 2748 €
-    %~ source
-    %~ http://www.dell.com/fr/entreprise/p/optiplex-7020-desktop/pd?oc=sm010d7020sff1h161&model_id=optiplex-7020-desktop
-    %~ http://www.dell.com/fr/entreprise/p/vostro-3900-mini-tower/pd?ref=PD_OC
-    %~ http://www.ldlc.com/fiche/PB00191040.html
-    %~ http://www.microdistri.com/dell-kb213-p-5782663.html?tracking=52f944942ed03&gclid=CNmE6vWW78gCFYoEwwodGEIBwA
-%~ http://www.asdiscount.com/clavier-souris-tablette/1450171-dell-570-11476-souris-sans-fil-noir.html
-    %~ http://www.lecteur-vitale.com/fp_consulteur_proplus_usb.php
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Une question essentielle se pose : Comment structurer la nouvelle architecture réseau du nouveau bâtiment hospitalier ?
-En effet, l’objectif principal d’évolution est de structurer l’architecture comme indiqué ci-dessous :
-\begin{itemize}
-\item Coeur ;
-\item Distribution ;
-\item Accés.
-\end{itemize}
-Pour la couche accès, ici l’objectif est de raccorder différents équipements hétérogènes tels que les téléphones le Wifi, les tablettes etc…
-Dans cette couche nous trouverons différents VLAN pour chaque entités d’utilisateurs (personnels et visiteurs).
-
-Pour la couche distribution, permet l’agrégation de flux homogènes tels que Ethernet et la capacité en commutation de circuits.
-
-Pour la couche cœur de réseau, il sera préférable de bien différentier nos différents réseaux du personnel et des visiteurs (patients)
-Dans cette partie des protocoles seront mis en place pour assurer les structurations architecturales de l’ensemble du réseau.
-
-Ces objectifs permettront d’assurer une fiabilité du réseau du par ses différents échanges.
-
-
-Nous avons décidé de se focaliser principalement sur le nouveau bâtiment. En fonction de la description de l’existant.
-La première idée que l’on se pose est de savoir par quel lien nous allons relier les deux bâtiments ? Le choix de la fibre monomode semble le plus opportun. Une redondance de lien est nécessaire pour
-La seconde idée se pose à la redondance du cœur du réseau. Un cœur de réseau déjà existant à l’ancien bâtiment doit être dupliqué au nouveau bâtiment, avec un certain niveau de sécurité offrant la TOIP, l’accès à internet, la sauvegarde et l’accès à la base de données.
-La troisième idée permet d’offrir un accès sans fil Wifi au personnel afin de consulter les ressources en toute mobilité. Les patients également auront accès à un réseau sans fil différent.
-La quatrième idée est d’assurer la qualité de service (QOS), chaque étage dispose d’un local dédié permettant de fournir l’accès aux ressources réseaux. Les étages seront assurés par des protocoles de gestion.
-
-Hypothèse future :
-L’ensemble de l’architecture de l’ancien bâtiment se coordonne aux éventuelles solutions que nous mettrons en place au nouveau bâtiment. Cependant si le projet souhaite évoluer d’ici quelques années et que le budget est conséquent, une remise à niveau de l’architecture de l’ancien bâtiment semblerait importante.
-Un redimensionnement du réseau
-Remise d’actualité des câbles
-Virtualisation du PABX, ou mise en place de la TOIP
-Virtualisation totale des serveurs et cœur de réseau.
-Sauvegarde externalisée.
-Un réseau Wifi séparé pour le personnel et les visiteurs
-Matériels fournit (tablettes, postes, et téléphones IP)
-
-
-
-
-
-
-
-
-
+%
+%
 
 
 %~ On peut mettre des mots en \emph{italique},
