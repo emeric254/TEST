@@ -34,7 +34,7 @@ Cette couche est la dernière avant de transmettre le paquet à l'hôte.
 Elle ne contient que des commutateurs qui permettrons de relayer l'information.
 
 \subsubsection{Couche hôtes}
-Il s'y trouve ici les différents types de terminaux .Tels que les terminaux portatifs, les ordinateurs fixe, les appareils médicaux( Scanner, radio etc).
+Il s'y trouve ici les différents types de terminaux .Tels que les terminaux portatifs, les ordinateurs fixes, les appareils médicaux( Scanner, radio etc).
 
 %
     \cleardoublepage
@@ -77,31 +77,25 @@ Il regroupe  tous les équipements téléphoniques fixe installer dans les chamb
 
 %
 %
-\subsection{A FINIR}
+\subsection{Plan d'adressage}
 
-adressage + plan nommage
-faire des sous réseau
-
-Etages
-VLAN
-plage d’adresse
-n0-n4
-VLAN DonnéesInterne
-10.2.0.0/16
-Tous
-VLAN Médical
-10.1.0.0/16
-Tous
-VLAN VoIPInterne
-10.0.0.0/16
-n2-4
-VLAN
-VoIPVisiteur
-10.128.0.0/16
-n0-4
-VLAN DonnéesVisiteur
-10.129.0.0/16
-
+    \begin{center}
+        \begin{tabular}{|l|l|r|}
+          \hline
+            Etages  &   VLAN interne    &   Plage d'adresses \\
+          \hline
+            tous    &   VoIP-Interne    &   10.0.0.0/16 \\
+          \hline
+            tous    &   Médical         &   10.1.0.0/16 \\
+          \hline
+            0 à 4   &   Données-Interne &   10.2.0.0/16 \\
+          \hline
+            2 à 4   &   VoIP-Visiteur   &   10.128.0.0/16 \\
+          \hline
+            0 à 4   &  Données-Visiteur &   10.129.0.0/16 \\
+          \hline
+        \end{tabular}
+    \end{center}
 
 %
 %
