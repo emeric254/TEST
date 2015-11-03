@@ -4,44 +4,123 @@
 %
 \subsection{Architecture physique}
 
-Après avoir vue l'architecture logique de notre réseau, nous pouvons maintenant établir l'architecture physique du réseau.
+Après avoir vu l'architecture logique de notre réseau, nous pouvons maintenant établir l'architecture physique du réseau ainsi que le nombre d'équipements requis.
 
-Tout d’abord, les deux bâtiments sont reliés à l’aide de deux fibres optiques (afin d’effectuer de la redondance en cas de coupure d’une de ces deux fibres) que l’on intègre dans le faux plafond du tunnel reliant les deux bâtiments.
-Les fibres sont relié aux routeurs qui ce situe au N0 dans la salle dédié à cet effet.
+Tout d'abord, les deux bâtiments sont reliés à l'aide de deux fibres optiques de 100m (afin d'effectuer de la redondance en cas de coupure d'une de ces deux fibres) que l'on intègre dans le faux plafond du tunnel reliant les deux bâtiments.
+Les fibres sont relié aux routeurs qui ce situant au N0. Elles sont connectées au routeur à l'aide de connecteur SFP+.
 
-Le niveau -1 est le niveau ou les scanners, radio s'effectuent ainsi que les opérations.
-Comme vue précédemment, il n'y a ni WiFi ni accès a internet pour ce niveau.
-Les équipements médicaux étant branchés directement sur les ordinateurs, on relie que les ordinateurs ainsi que les téléphones au commutateur du niveau -1 situé dans un local prévu à cet effet.
+Le niveau -1 est le niveau où les scanners, radio s'effectuent ainsi que les opérations. Comme vue précédemment, il n'y a ni de WiFi, n'y d'accès à internet à ce niveau.
+Les équipements médicaux étant branchés directement sur les ordinateurs a l'aide de câble console, on relie les ordinateurs ainsi que les téléphones au commutateur du niveau -1 situé dans un local prévu à cet effet.
 De ce fait, les terminaux du niveau -1 font partie du VLAN Médical.
 
-Au niveau 0, une salle est entièrement dédié aux équipements réseau.
-Cette salle contient une armoire. On y installe deux routeurs, deux lames serveur, un NAS ainsi que 2 commutateurs.
-Un commutateur principal et un concernant le raccordement des terminaux du niveau 0.
-Tous les équipements réseau sont réliés au commutateurs principal.
-Les différents terminaux du niveau 0 tels que les bornes WiFi ou ordinateurs sont reliés au commutateur du niveau 0.
-Il y a 3 bornes WiFi, une fournissant internet pour les visiteurs et deux autres pour le personnel.
+Au niveau 0, une salle est entièrement dédié aux équipements réseau. Cette salle contient une armoire. On y installe deux routeurs, deux lames serveur qui sont sur deux machines différentes, un NAS, un onduleur afin de palier aux pannes de courant ainsi que trois commutateurs.
+Deux commutateurs de coeur de 24 ports où sont relié tous les équipements de l'infrastructure réseau et un commutateur 24 ports concernant le raccordement des terminaux du niveau 0.
+Tous les équipements dans la salle sont doublés afin de garantir une haute disponibilité.
+
+Il y a aussi  trois bornes WiFi, une fournissant internet pour les visiteurs et deux autres pour le personnel.
 La borne WiFi fournissant internet pour les visiteurs fait partit du VLAN DonnéesVisiteur.
-Les téléphones pour l’accueil et les bureaux administratif font partie du VLAN VoIPInterne.
-Les ordinateurs et les bornes WiFi eux font partie du VLAN DonnéesInterne.
+Les téléphones pour l'accueil et les bureaux administratif font partie du VLAN VoIPInterne.
+Les ordinateurs et les bornes WiFi destinés aux personnels eux font partie du VLAN Données-Interne.
 
-Le niveau 1 contient  uniquement des terminaux faisant partit du VLAN Interne.
-Les terminaux téléphoniques font partie du VLAN VoIP-Interne, les ordinateurs et les bornes WiFi du VLAN Données-Interne.
-Tous les terminaux seront reliés sur deux commutateurs 24ports se situant dans le local de l'étage prévue à cet effet.
+Le niveau 1 contient uniquement des terminaux faisant partit du VLAN Interne. Les terminaux téléphoniques font partie du VLAN VoIP-Interne, les ordinateurs et les deux bornes WiFi du VLAN Données-Interne. Tous les terminaux sont raccordés sur deux commutateurs de 24ports qui se situent dans le local de l'étage prévue à cet effet. Les équipements téléphoniques sont raccordés à un commutateur et les autres types de terminaux tels que les ordinateurs, bornes WiFi et prises RJ45 supplémentaires sur le deuxième commutateur.
 
-Pour les niveaux de 2 à 4, on place une borne WiFi afin de fournir Internet aux patients.
-Cette borne fait partit du VLAN Données-Visiteur. Les téléphones pour les patients ce situant dans chaque chambres font partie du VLAN VoIP-Visiteur.
-La borne ainsi que les téléphones sont raccordés à un commutateur 24ports.
-Pour les médecins, infirmières, deux bornes WiFi sont mise en place et deux ordinateurs.
-Ces terminaux font partie du VLAN Données-Interne. Deux téléphones sont aussi présent pour le personnel, ils font partie du VLAN VoIP-Interne.
-Les terminaux internes sont relié à un commutateur 12ports.
-Les commutateurs se situent dans un local pour chaque étage.
 
-Les commutateurs ce trouvant à chaque étage sont relié directement au commutateur principal ce situant dans la salle du niveau 0.
+Pour les niveaux de 2 à 4, on place une borne WiFi afin de fournir Internet aux patients. Cette borne fait partit du VLAN Données-Visiteur. Les téléphones pour les patients se situant dans chaque chambres font partie du VLAN VoIP-Visiteur.
+Pour les médecins, infirmières, deux bornes WiFi sont mise en place et deux ordinateurs. Ces terminaux font partie du VLAN Données-Interne.
+Deux téléphones sont aussi présent pour le personnel, ils font partie du VLAN VoIP-Interne.
+Tous les terminaux sont raccordés à un commutateur. Du au grand nombre de terminaux à ces étages, deux commutateurs seront mis en place. Pour une question d'installation et de maintenance, tous les téléphones sont relié à un commutateur et les autres terminaux de type ordinateur et borne sont reliés au deuxième commutateur.
 
+Les commutateurs se trouvant aux étages sont reliés directement sur les  deux commutateur de coeur qui se situe dans la salle du niveau 0.
+
+Les téléphones et les bornes WiFi sont alimentés en PoE pour éviter d'installer des prises électriques à coté de ceux-ci.
+Tous les raccordements sont fait à l'aide de câbles Ethernet SSTP catégorie 6 RJ45 sans halogène.
+
+
+%
+%
+\subsection{Détails par étage}
+
+    \begin{center}
+        \begin{tabular}{|l|p{10cm}|r|}
+          \hline
+            Étages  &   Équipements    &   Prises RJ45 \\
+          \hline
+            N -1    &
+            \begin{itemize}
+                \item 6 Téléphones
+                \item 8 Ordinateurs
+                \item 1 commutateur 24ports
+            \end{itemize}
+            &   14 + 6 libres \\
+          \hline
+            N 0    &
+            \begin{itemize}
+                \item 3 Bornes WiFi
+                \item 8 Téléphones
+                \item 8 Ordinateurs
+                \item 2 routeurs
+                \item 2 Pare-feux logique
+                \item 3 commutateur 24ports
+                \item 1 NAS
+            \end{itemize}
+            &   16 + 4 libres \\
+          \hline
+            N 1    &
+            \begin{itemize}
+                \item 2 Bornes WiFi
+                \item 9 Téléphones
+                \item 9 Ordinateurs
+                \item 2 commutateur 24ports
+            \end{itemize}
+            &   18 + 9 libres \\
+          \hline
+            N 2 à 4    &
+            \begin{itemize}
+                \item 3 Bornes WiFi
+                \item 17 Téléphones
+                \item 2 Ordinateurs
+                \item 2 commutateur 24ports
+            \end{itemize}
+            &   19 + 2 libres \\
+          \hline
+        \end{tabular}
+    \end{center}
+
+%
+    \cleardoublepage
 %
 %
 \subsection{Schéma du réseau}
 
+%~ \begin{figure}[!ht]
+    %~ \center
+    %~ \includegraphics[width=1\textwidth]{./images/logique.png}
+    %~ \caption{Schéma }
+%~ \end{figure}
+
+%~ \begin{figure}[!ht]
+    %~ \center
+    %~ \includegraphics[width=1\textwidth]{./images/logique.png}
+    %~ \caption{Schéma }
+%~ \end{figure}
+
+%~ \begin{figure}[!ht]
+    %~ \center
+    %~ \includegraphics[width=1\textwidth]{./images/logique.png}
+    %~ \caption{Schéma }
+%~ \end{figure}
+
+%~ \begin{figure}[!ht]
+    %~ \center
+    %~ \includegraphics[width=1\textwidth]{./images/logique.png}
+    %~ \caption{Schéma }
+%~ \end{figure}
+
+%~ \begin{figure}[!ht]
+    %~ \center
+    %~ \includegraphics[width=1\textwidth]{./images/logique.png}
+    %~ \caption{Schéma }
+%~ \end{figure}
 
 %
 %
