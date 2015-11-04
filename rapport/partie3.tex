@@ -192,7 +192,7 @@ Le FTP (File Transfert Protocol)
 Chacun de nos commutateur a pour rôle de bien diffuser les paquets. Ainsi chaque commutateur à cinq VLAN configurés pour bien différencier ceux-ci.
 
 Explication de création de VLAN :
-un commutateur de 24 ports a n ports tagger pour chaque VLAN.
+un commutateur de 24 ports a $N$ ports tagger pour chaque VLAN.
 Nous  nous contenterons de voir dot1q dans le cas présent. Toutefois il est bon de savoir que chacun a son propre fonctionnement. ISL pour sa part encapsule toute les trames, quelque soit le VLAN. dot1Q, lui ne fait qu'insérer un tag (un marqueur) dans l'entête de la trame ethernet … et uniquement sur les VLANs autres que le VLAN natif. (Le VLAN natif est celui utilisé par les protocoles comme CDP par exemple pour s'échanger les informations)
 
 %
